@@ -64,12 +64,13 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <title>Arduino Project</title>
 </head>
 
 <body>
-  <h4>Arduino Potentiometer + LED Control</h4>
+  <h1>Arduino Potentiometer + LED Control</h1>
 
-  <p>This sketch reads a potentiometer and lights up different LEDs depending on the value, using <code>millis()</code> instead of <code>delay()</code> for non-blocking timing.</p>
+  <p>This sketch reads a potentiometer and turns LEDs on or off depending on the value, using <code>millis()</code> for timing instead of <code>delay()</code>.</p>
 
   <pre><code>
 const int potPin = A0;
@@ -77,7 +78,7 @@ const int ledSetA = D1;
 const int ledSetB = D2;
 
 unsigned long previousMillis = 0;
-const long interval = 50; // Check every 50 ms
+const long interval = 50; // 50ms interval
 
 void setup() {
   pinMode(ledSetA, OUTPUT);
