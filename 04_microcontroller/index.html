@@ -59,8 +59,58 @@
     <br>
     <br>
 
-<h4> I coded the microcontroller to read the potentiometer value, and if the value was greater than 2200, it would supply power to one set of LED's (Pin D1) and if the potentiometer value was less than 1900, it would supply power to the other set of LED's (Pin D2)  </h4>
-<img style="height: 500px; width: 500px;" src="./code.jpg" alt=" My Code">
+<h4> I coded the microcontroller to read the potentiometer value, and if the value was greater than 2200, it would supply power to one set of LED's (Pin D1) and if the potentiometer value was less than 1900, it would supply power to the other set of LED's (Pin D2). </h4>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <h4>Arduino Potentiometer + LED Control</h4>
+
+  <p>This sketch reads a potentiometer and lights up different LEDs depending on the value, using <code>millis()</code> instead of <code>delay()</code> for non-blocking timing.</p>
+
+  <pre><code>
+const int potPin = A0;
+const int ledSetA = D1;
+const int ledSetB = D2;
+
+unsigned long previousMillis = 0;
+const long interval = 50; // Check every 50 ms
+
+void setup() {
+  pinMode(ledSetA, OUTPUT);
+  pinMode(ledSetB, OUTPUT);
+  Serial.begin(115200);
+}
+
+void loop() {
+  unsigned long currentMillis = millis();
+
+  if (currentMillis - previousMillis >= interval) {
+    previousMillis = currentMillis;
+
+    int potValue = analogRead(potPin);
+    Serial.println(potValue);
+
+    if (potValue < 1900) {
+      digitalWrite(ledSetA, HIGH);
+      digitalWrite(ledSetB, LOW);
+    } else if (potValue > 2200) {
+      digitalWrite(ledSetA, LOW);
+      digitalWrite(ledSetB, HIGH);
+    } else {
+      digitalWrite(ledSetA, LOW);
+      digitalWrite(ledSetB, LOW);
+    }
+  }
+}
+  </code></pre>
+
+</body>
+</html>
+
 <h4> the next step was to actually build the circuit, for this I used 1 potentiometer, 19 wires, 16 LED's and 4 resistors. I connected D1 to one set of LED's and D2 to the other set of LED's, making sure both were also connected to ground. After uploading my code and testing, it turned out just as I expected!  </h4>
 <br>
 <img style="height: 500px; width: 300px;" src="./angleview.jpg" alt="circuit view">
