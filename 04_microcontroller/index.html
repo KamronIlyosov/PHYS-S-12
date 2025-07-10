@@ -67,11 +67,8 @@
 </head>
 
 <body>
-  <h1>Arduino Potentiometer + LED Control</h1>
 
-  <p>This sketch reads a potentiometer and turns LEDs on or off depending on the value, using <code>millis()</code> for timing instead of <code>delay()</code>.</p>
-
-  <pre><code>
+<pre>
 const int potPin = A0;
 const int ledSetA = D1;
 const int ledSetB = D2;
@@ -88,16 +85,16 @@ void setup() {
 void loop() {
   unsigned long currentMillis = millis();
 
-  if (currentMillis - previousMillis >= interval) {
+  if (currentMillis - previousMillis &gt;= interval) {
     previousMillis = currentMillis;
 
     int potValue = analogRead(potPin);
     Serial.println(potValue);
 
-    if (potValue < 1900) {
+    if (potValue &lt; 1900) {
       digitalWrite(ledSetA, HIGH);
       digitalWrite(ledSetB, LOW);
-    } else if (potValue > 2200) {
+    } else if (potValue &gt; 2200) {
       digitalWrite(ledSetA, LOW);
       digitalWrite(ledSetB, HIGH);
     } else {
@@ -106,7 +103,7 @@ void loop() {
     }
   }
 }
-  </code></pre>
+</pre>
 
 </body>
 </html>
