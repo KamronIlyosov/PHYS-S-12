@@ -29,7 +29,7 @@
 <hr>
 
 <h4>Step 1: Building the Sensor</h4>
-<p>I placed a block of soft foam between two small copper sheets. One sheet was connected to pin D0 (analog A3), and the other to D3 (as the TX pin). When weight is added on top, the foam compresses, changing the capacitance and giving different readings.</p>
+<p>I placed a block of soft foam between two small copper sheets. One sheet was connected to pin D0 (analog), and the other to D3 (as the TX pin). When weight is added on top, the foam compresses, changing the capacitance and giving different readings.</p>
 <ul>
   <li>Top copper sheet - D0</li>
   <li>Bottom copper sheet - D3 </li>
@@ -41,7 +41,7 @@
 <hr>
 
 <h4>Step 2: Initial Code</h4>
-<p>This code reads the difference between the high and low analog values caused by charging/discharging through the copper sheets. The raw result changes depending on pressure.</p>
+<p>This is the uncalibrated code which I got from the S-12 website, it reads the difference between the high and low analog values caused by charging/discharging through the copper sheets. The raw result changes depending on pressure.</p>
 
 <pre style="background-color: white; color: black; padding: 10px; border: 1px solid #ccc; white-space: pre-wrap; font-family: monospace;">
 long result;
@@ -101,13 +101,13 @@ long tx_rx() {
   </tbody>
 </table>
 
-<p>Then I used a simple function to estimate weight based on the sensor value. This gave rough weight results.</p>
+<p>Then I used a simple function to estimate weight based on the sensor value, this gave rough weight results.</p>
 
 <hr>
 
 <h4>Step 4: Updated Code with Weight Estimation</h4>
 
-<p>I added a function to convert the sensor reading into grams using a linear map from 60k to 140k mapped to 0g to 500g.</p>
+<p>I added a function to convert the sensor reading into grams using a linear range from 60k to 140k mapped to 0g to 500g.</p>
 
 <pre style="background-color: white; color: black; padding: 10px; border: 1px solid #ccc; white-space: pre-wrap; font-family: monospace;">
 long result;
@@ -155,7 +155,7 @@ long tx_rx() {
 <hr>
 
 <h4>Testing</h4>
-<p>When I pressed lightly, the weight reading was near 0g. As I added more pressure, the estimated weight increased. This showed the sensor was working and responding to changes in force.</p>
+<p>To test my sensor, I measured the weight of airpods on an actual scale, which got me 50g, then I used my capacitive sensor to measure the weight of the airpods and got about 55g, which is closely accurate for a handmade sensor. This showed the sensor was working and responding to changes in force.</p>
 <img src="sensor scale.jpg" alt="Weight readings" style="height: 400px; width: 300px;" class="img-fluid rounded shadow mb-4">
 <img src="podweight.jpg" alt="Weight readings" style="height: 400px; width: 300px;" class="img-fluid rounded shadow mb-4">
 <br>
