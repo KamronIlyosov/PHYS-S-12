@@ -5,7 +5,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="../style.css" rel="stylesheet">
 
-
 <nav class="navbar navbar-expand-sm navbar-dark" style=" color: #EEE7E8;">
   <div style="align-items: center; justify-content: center;" class="container-fluid">
     <div class="flexrow">
@@ -18,22 +17,146 @@
   </div>
 </nav>
 
-<body>
-<xmp style="display:none;">
-<div class="textcontainer">
-<p class="margin">   </p>
+<!-- Main Content -->
+<div class="container mt-5">
 
-<h3>Week 6: Electronic Inputs</h3>
+  <h3>Assignment 2: Light Sensor with LED Control</h3>
+  <p>This project uses a light sensor and an LED controlled by a XIAO microcontroller. The sensor measures light, converts it to lux, and turns the LED on in darkness, and off in light.</p>
 
-<h4>Assignment 1: Capactive Sensor<h4>
+  <hr>
 
-<h4>Assignment 2: [Use + Calibrate Another Sensor]</h4>
+  <h4>Step 1: Wiring the Circuit</h4>
+  <p>I connected the light sensor to analog pin A0 (D0) and the LED to pin D10 with a 1k resistor.</p>
+  <ul>
+    <li>Light Sensor - A0 (D0)</li>
+    <li>LED - D10</li>
+    <li>Power and GND wires connected accordingly</li>
+  </ul>
+  <img src="wiring.jpg" alt="Circuit wiring" class="img-fluid rounded shadow mb-4">
+
+  <hr>
+
+  <h4>Step 2: Writing the Code</h4>
+  <p>The code below reads analog values from the light sensor every 100ms, estimates the lux value, and turns the LED on if the light level is below the threshold.</p>
+
+<pre style="background-color: white; color: black; padding: 10px; border: 1px solid #ccc; white-space: pre-wrap; font-family: monospace;">
+const int sensorPin = D0;
+const int ledPin = D10;        
+
+unsigned long lastReadTime = 0;
+const unsigned long readInterval = 100; 
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(115200);
+}
+
+void loop() {
+  unsigned long currentTime = millis();
+  if (currentTime - lastReadTime >= readInterval) {
+    lastReadTime = currentTime;
+
+    int sensorValue = analogRead(sensorPin);
+    float lux = estimateLux(sensorValue);
+
+    Serial.print("Raw: ");
+    Serial.print(sensorValue);
+    Serial.print(" | Estimated Lux: ");
+    Serial.println(lux);
+
+    if (lux < 100) {
+      digitalWrite(ledPin, HIGH);  
+    } else {
+      digitalWrite(ledPin, LOW);  
+    }
+  }
+}
+
+float estimateLux(int analogVal) {
+  int inverted = 4095 - analogVal;
+  float lux = map(inverted, 0, 4095, 0, 1000);
+  return constrain(lux, 0, 1000);
+}
+</pre>
+
+
+
+  <hr>
+
+  <h4>Step 3: Calibrating the Sensor</h4>
+
+  <p>To convert analog values to approximate lux values, I used the following method:</p>
+  <ol>
+    <li>Measured the analog reading under different lighting conditions</li>
+    <li>Recorded approximate lux values using known references</li>
+    <li>Mapped the readings using a linear function after inverting the sensor value</li>
+  </ol>
+
+  <p>Example measurements:</p>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Condition</th>
+        <th>Analog Value</th>
+        <th>Approx. Lux</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Direct flashlight</td>
+        <td>300</td>
+        <td>~900</td>
+      </tr>
+      <tr>
+        <td>Room light</td>
+        <td>1200</td>
+        <td>~300</td>
+      </tr>
+      <tr>
+        <td>Shadow</td>
+        <td>2500</td>
+        <td>~70</td>
+      </tr>
+      <tr>
+        <td>Dark room</td>
+        <td>3500+</td>
+        <td>&lt;10</td>
+      </tr>
+    </tbody>
+  </table>
+
+<p>To estimate lux, I tested the sensor under different lighting and recorded the analog readings. Then I inverted the values and mapped them to a 0–1000 lux range using a simple linear function:</p>
+
+<div style="background-color: #f8f9fa; padding: 10px; border-radius: 5px; font-family: monospace; white-space: pre;">
+int inverted = 4095 - analogVal;
+float lux = map(inverted, 0, 4095, 0, 1000);
+</div>
+
+<p>This gives a rough lux value where 0 = dark and 1000 = bright.</p>
+
+
+  <hr>
+
+  <h4>Step 4: Testing the LED</h4>
+  <p>When the room was dark, the LED turned on as expected. When light was restored, it turned off. This matched the lux threshold set in my code.</p>
+  <img src="on.jpg" alt="LED ON in darkness" class="img-fluid rounded shadow mb-4">
+  <img src="off.jpg" alt="LED OFF in light" class="img-fluid rounded shadow mb-4">
+
+  <hr>
+
+  <h4>Demo Video</h4>
+  <video controls class="w-100 rounded shadow">
+    <source src="onoff.MP4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <hr>
+
+  <h3>Next Steps</h3>
+  <h4>In the future, I could add PWM control to adjust the LED brightness smoothly based on lux, or log the data for longer term light tracking.</h4>
 
 </div>
-</xmp>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
-<script src="../strapdown.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-
 </html>
