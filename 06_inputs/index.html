@@ -32,7 +32,7 @@
     <li>LED - D10</li>
     <li>Power and GND wires connected accordingly</li>
   </ul>
-  <img src="wiring.jpg" alt="Circuit wiring" class="img-fluid rounded shadow mb-4">
+  <img style="height: 400px; width: 300px;" src="wiring.jpg" alt="Circuit wiring" class="img-fluid rounded shadow mb-4">
 
   <hr>
 
@@ -135,12 +135,23 @@ float lux = map(inverted, 0, 4095, 0, 1000);
 <p>This gives a rough lux value where 0 = dark and 1000 = bright.</p>
 
 
+ <div class="container">
+    <div class="box">
+      <img style="height: 300px; width: 400px;" src="./room.jpg" alt="">
+      <div class="label">Lux in Room Light</div>
+    </div>
+    <br>
+    <div class="box">
+      <<img style="height: 300px; width: 400px;" src="./light.jpg" alt="">
+      <div class="label">Lux Under Flashlight</div>
+    </div>
+  </div>
   <hr>
 
   <h4>Step 4: Testing the LED</h4>
   <p>When the room was dark, the LED turned on as expected. When light was restored, it turned off. This matched the lux threshold set in my code.</p>
-  <img src="on.jpg" alt="LED ON in darkness" class="img-fluid rounded shadow mb-4">
-  <img src="off.jpg" alt="LED OFF in light" class="img-fluid rounded shadow mb-4">
+  <img style="height: 400px; width: 300px;" src="on.jpg" alt="LED ON in darkness" class="img-fluid rounded shadow mb-4">
+  <img style="height: 400px; width: 300px;" src="off.jpg" alt="LED OFF in light" class="img-fluid rounded shadow mb-4">
 
   <hr>
 
