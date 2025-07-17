@@ -107,7 +107,7 @@ long tx_rx() {
 
 <h4>Step 4: Updated Code with Weight Estimation</h4>
 
-<p>I added a function to convert the sensor reading into grams using a linear range from 60k to 140k,at first I mapped it to 0g-500g, but the weight readings were overestimated and inaccurate. After testung I mapped it to 0g to 500g, which showed greater accuracy.</p>
+<p>I added a function to convert the sensor reading into grams using a linear range from 60k to 140k,at first I mapped it to 0g-500g, but the weight readings were overestimated and inaccurate. After testing I mapped it to 0g to 500g, which showed greater accuracy.</p>
 
 <pre style="background-color: white; color: black; padding: 10px; border: 1px solid #ccc; white-space: pre-wrap; font-family: monospace;">
 long result;
@@ -292,7 +292,7 @@ float lux = map(inverted, 0, 4095, 0, 1000);
   <hr>
 
   <h4>Step 4: Testing the LED</h4>
-  <p>When the room was dark, the LED turned on as expected. When light was restored, it turned off. This matched the lux threshold set in my code.</p>
+  <p>When the room was dark, the LED turned on as expected. When light was on, it turned off. This matched the lux threshold set in my code.</p>
   <img style="height: 400px; width: 300px;" src="on.jpg" alt="LED ON in darkness" class="img-fluid rounded shadow mb-4">
   <img style="height: 400px; width: 300px;" src="off.jpg" alt="LED OFF in light" class="img-fluid rounded shadow mb-4">
 
