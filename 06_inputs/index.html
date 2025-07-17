@@ -19,6 +19,149 @@
 
 <!-- Main Content -->
 <div class="container mt-5">
+<br>
+
+<h3>Assignment 1: Capacitive Sensor with Foam and Copper</h3>
+<br>
+
+<p>For this project, I built a basic capacitive pressure sensor using a block of foam and two copper sheets. When weight is applied, the foam compresses slightly, changing the capacitance between the copper plates. The sensor is connected to the XIAO microcontroller and outputs values based on how much pressure is applied.</p>
+
+<hr>
+
+<h4>Step 1: Building the Sensor</h4>
+<p>I placed a block of soft foam between two small copper sheets. One sheet was connected to pin D0 (analog A3), and the other to D3 (as the TX pin). When weight is added on top, the foam compresses, changing the capacitance and giving different readings.</p>
+<ul>
+  <li>Top copper sheet - D0</li>
+  <li>Bottom copper sheet - D3 </li>
+</ul>
+<img src="sensor3d.jpg" alt="Foam Capacitive Sensor" style="height: 400px; width: 300px;" class="img-fluid rounded shadow mb-4">
+<img src="sensorfront.jpg" alt="Foam Capacitive Sensor" style="height: 400px; width: 300px;" class="img-fluid rounded shadow mb-4">
+<img src="sensorwiring.jpg" alt="Foam Capacitive Sensor" style="height: 400px; width: 300px;" class="img-fluid rounded shadow mb-4">
+<br>
+<hr>
+
+<h4>Step 2: Initial Code</h4>
+<p>This code reads the difference between the high and low analog values caused by charging/discharging through the copper sheets. The raw result changes depending on pressure.</p>
+
+<pre style="background-color: white; color: black; padding: 10px; border: 1px solid #ccc; white-space: pre-wrap; font-family: monospace;">
+long result;
+int analog_pin = A3;
+int tx_pin = 4;
+
+void setup() {
+  pinMode(tx_pin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  result = tx_rx();
+  Serial.println(result);
+}
+
+long tx_rx() {
+  int read_high, read_low, diff;
+  long sum = 0;
+  int N_samples = 100;
+
+  for (int i = 0; i < N_samples; i++) {
+    digitalWrite(tx_pin, HIGH);
+    read_high = analogRead(analog_pin);
+    delayMicroseconds(100);
+    digitalWrite(tx_pin, LOW);
+    read_low = analogRead(analog_pin);
+    diff = read_high - read_low;
+    sum += diff;
+  }
+  return sum;
+}
+</pre>
+
+<hr>
+
+<h4>Step 3: Calibration</h4>
+<p>To calibrate, I placed weights on the sensor and recorded the readings:</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Weight (g)</th>
+      <th>Sensor Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>0g</td><td>60,000</td></tr>
+    <tr><td>20g</td><td>72,000</td></tr>
+    <tr><td>60g</td><td>85,000</td></tr>
+    <tr><td>100g</td><td>86,000</td></tr>
+    <tr><td>140g</td><td>90,000</td></tr>
+    <tr><td>200g</td><td>95,000</td></tr>
+    <tr><td>300g</td><td>103,000</td></tr>
+    <tr><td>500g</td><td>110,000</td></tr>
+    <tr><td>800g</td><td>126,000</td></tr>
+  </tbody>
+</table>
+
+<p>Then I used a simple function to estimate weight based on the sensor value. This gave rough weight results.</p>
+
+<hr>
+
+<h4>Step 4: Updated Code with Weight Estimation</h4>
+
+<p>I added a function to convert the sensor reading into grams using a linear map from 60k to 140k mapped to 0g to 500g.</p>
+
+<pre style="background-color: white; color: black; padding: 10px; border: 1px solid #ccc; white-space: pre-wrap; font-family: monospace;">
+long result;
+int analog_pin = A3;
+int tx_pin = 4;
+
+void setup() {
+  pinMode(tx_pin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  result = tx_rx();
+  float weight = estimateWeight(result);
+  Serial.print("Reading: ");
+  Serial.print(result);
+  Serial.print(" | Est. Weight (g): ");
+  Serial.println(weight);
+}
+
+float estimateWeight(long reading) {
+  if (reading <= 60000) return 0;
+  if (reading >= 140000) return 500;
+  return map(reading, 60000, 140000, 0, 500);
+}
+
+long tx_rx() {
+  int read_high, read_low, diff;
+  long sum = 0;
+  int N_samples = 100;
+
+  for (int i = 0; i < N_samples; i++) {
+    digitalWrite(tx_pin, HIGH);
+    read_high = analogRead(analog_pin);
+    delayMicroseconds(100);
+    digitalWrite(tx_pin, LOW);
+    read_low = analogRead(analog_pin);
+    diff = read_high - read_low;
+    sum += diff;
+  }
+  return sum;
+}
+</pre>
+
+<hr>
+
+<h4>Testing</h4>
+<p>When I pressed lightly, the weight reading was near 0g. As I added more pressure, the estimated weight increased. This showed the sensor was working and responding to changes in force.</p>
+<img src="sensor scale.jpg" alt="Weight readings" style="height: 400px; width: 300px;" class="img-fluid rounded shadow mb-4">
+<img src="podweight.jpg" alt="Weight readings" style="height: 400px; width: 300px;" class="img-fluid rounded shadow mb-4">
+<br>
+<br>
+<br>
+
 
   <h3>Assignment 2: Light Sensor with LED Control</h3>
   <p>This project uses a light sensor and an LED controlled by a XIAO microcontroller. The sensor measures light, converts it to lux, and turns the LED on in darkness, and off in light.</p>
