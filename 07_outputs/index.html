@@ -44,7 +44,7 @@
     <div class="step">
       <strong>Step 1: Research</strong>
       <p>Researched energy harvesting from using mechanical to electrical conversion via small motors, I found that my previous prototype in "Week 5: 3D design" couldnt keep electricity flowing in one steady polarity and when the rod wpould go back and forth it woul only light 2 LED's at a time due to changes in polarity.</p>
-      <img src="motor.jpg" width="360" height="640" alt="Vertical Image">
+      <img src="motor.jpg" width="450" height="500" alt="Vertical Image">
     </div>
     <div class="step">
       <strong>Step 2: 3D printing new rod for the motor shaft</strong>
@@ -61,6 +61,7 @@
     <div class="step">
   <strong>Step 5: Voltage Reading</strong>
   <p>After converting AC to DC using the BR86D bridge rectifier, I connected a 100µF capacitor across the output to smooth the signal. I then used a voltage divider made from two resistors to scale down the voltage to safe levels before connecting it to analog pin A0. This allows the microcontroller to safely measure how much voltage is generated while walking.</p>
+  <div style="display: flex; gap: 10px; align-items: flex-start;">
   <img src="circuit3.jpg" width="360" height="640" alt="Vertical Image">
   <video src="volts.mp4" width="360" height="640" controls></video>
 </div>
@@ -75,6 +76,7 @@
   <strong>Step 7: Improved Rod Version</strong>
   <p>I noticed that my newly printed rod was too bulky for my liking and I didnt like how the magnet was indented forward, as I just glued it on. To fix this issue, I made an improved and thinner version of the rod, with a perfect extrusion to fit the magnet flushly.</p>
   <div style="display: flex;">
+  <div style="display: flex; gap: 10px;">
   <img src="before.jpg" alt="Hall sensor mounted" width="360" height="640">
   <img src="CAD.jpg" alt="Hall sensor mounted" width="360" height="640">
   <img src="magnet.jpg" alt="Hall sensor mounted" width="360" height="640">
@@ -85,7 +87,15 @@
 <div class="step">
   <strong>Step 8: Calories Estimation</strong>
   <p>To provide a rough estimate of calories burned, I researched the calories burned per step for the average person, and programmed the microcontroller to calculate this using a constant multiplier of 0.05 per step. This value is updated in real time on the OLED screen after every detected step.</p>
-  <img src="images/step7_calories.jpg" alt="Calories feature">
+  <img src="calories.jpg" alt="Hall sensor mounted" width="360" height="640">
+  <div style="background-color: #ffffff; color: #000000; padding: 15px; border: 1px solid #000; border-radius: 5px;">
+ <pre style="background-color: white; color: black; padding: 10px; border: 1px solid #ccc; white-space: pre-wrap; font-family: monospace;">
+ if (pulseCount == 2) {
+      stepCount++;
+      caloriesBurned = stepCount * 0.05;
+      pulseCount = 0;
+    }
+</pre>
 </div>
 
 <div class="step">
@@ -102,9 +112,10 @@
 
 <div class="step">
   <strong>Step 10: Final Testing</strong>
-  <p>I conducted a final test of my prototype ensuring all sensors and wiring worked as expected. After turning the rod back and forth replicating the movement of walking, I confirmed that the hall sensor was accurately detecting steps, the motor was generating voltage, and the OLED displayed all outputs correctly in real time.</p>
-  <img src="images/step10_test.jpg" alt="Prototype testing">
-</div>
+  <p>I conducted a final test of my prototype ensuring all sensors and wiring worked as expected. After turning the rod back and forth replicating the movement of walking, I confirmed that the hall sensor was accurately detecting steps, the motor was generating voltage, and the OLED displayed all outputs correctly in real time. I also found that the voltage ranged from 0.69 to about 4.08 at its peak.</p>
+    <img src="lowestvolt.jpg" alt="Hall sensor mounted" width="360" height="640">
+     <img src=".jpg" alt="Hall sensor mounted" width="360" height="640">
+  </div>
 
 
   <section>
