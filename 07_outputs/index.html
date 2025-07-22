@@ -124,7 +124,7 @@
 <br>
 <div class="step">
   <strong>Step 10: Final Testing</strong>
-  <h4>I conducted a final test of my prototype ensuring all sensors and wiring worked as expected. After turning the rod back and forth replicating the movement of walking, I confirmed that the hall sensor was accurately detecting steps, the motor was generating voltage, and the OLED displayed all outputs correctly in real time. I also found that the voltage ranged from 0.69 to about 4.08 at its peak.</h4>
+  <h4>I conducted a final test of my prototype ensuring all sensors and wiring worked as expected. After turning the rod back and forth replicating the movement of walking, I confirmed that the hall sensor was accurately detecting steps, the motor was generating voltage, and the OLED displayed all outputs correctly in real time. I also found that the voltage ranged from 0.69 to about 4.03 at its peak, this is the voltage after using 2 resistors in order to not overvolt the analog pin, in my final project I will consider using a 12V microcontroller due to this factor.</h4>
     <img src="lowestvolt.jpg" alt="Hall sensor mounted" width="260" height="440">
      <img src="highestvolt.jpg" alt="Hall sensor mounted" width="260" height="440">
   </div>
@@ -307,6 +307,7 @@ void loop() {
 <h4>Zoomed in to show the end of one wave</h4>
 <h4>This image shows where the wave ends. I circled the sharp drop that happens just before the next wave starts.</h4>
 <img src="end3.jpg" alt="End of a waveform cycle" height="250" width="350">
+<br>
 <br>
 <h4>A strange detail I saw when zoomed in closely was a wobble like wave pattern at the complete bottom of the wave, but didnt manage to get a clear picture of it.</h4>
 <br>
