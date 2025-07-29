@@ -61,7 +61,9 @@
 <img src="LEDoff.jpg" alt="Materials " width="400" height="400">
 <img src="URL.gif" alt="Materials " width="400" height="400">
 <img src="LEDon.jpg" alt="Materials " width="400" height="400">
-
+<br>
+<br>
+<h3>My Code:</h3>
 
 <div style="background-color: #ffffff; color: #000000; padding: 15px; border: 1px solid #000; border-radius: 5px;">
   <pre style="background-color: white; color: black; padding: 10px; border: 1px solid #ccc; white-space: pre-wrap; font-family: monospace;">
@@ -120,19 +122,18 @@ void loop() {
 
 <p>Instead of using IFTTT or Homebridge, I created two simple Siri Shortcuts:</p>
 <ul>
-  <li><strong>Turn LED On:</strong> Sends a GET request to <code>http://&lt;192.168.0.194&gt;/on</code></li>
-  <li><strong>Turn LED Off:</strong> Sends a GET request to <code>http://&lt;192.168.0.194&gt;/off</code></li>
+  <li>Turn LED On: Sends a GET request to <code>http://&lt;192.168.0.194&gt;/on</code></li>
+  <li>Turn LED Off: Sends a GET request to <code>http://&lt;192.168.0.194&gt;/off</code></li>
 </ul>
 
 <p>Each shortcut uses the "Get Contents of URL" action. You can add a voice command like “Turn on my LED” to trigger it with Siri.</p>
 
-<p><strong>Suggested images:</strong></p>
-<ul>
+
   <img src="shortcuts.jpg" alt="GET request to turn the lights off " width="400" height="400">
   <img src="geton.jpg" alt="GET request to turn the lights on " width="400" height="400">
   <img src="getoff.jpg" alt="GET request to turn the lights off " width="400" height="400">
   
-</ul>
+
   <hr>
     <h5>Step 5: Testing and Results</h5>
 <p>To verify that the system was working correctly, I followed these steps:</p>
@@ -140,20 +141,20 @@ void loop() {
 <ol>
   <li>Connected the Xiao ESP32-C3 to Wi-Fi and opened the Serial Monitor to view the assigned IP address.</li>
   <li>Tested the HTTP endpoints by visiting <code>http://&lt;192.168.0.194&gt;/on</code> and <code>http://&lt;192.168.0.194&gt;/off</code> in a web browser. The onboard LED responded immediately.</li>
+  <br>
+  <video style="height: 400px; width: 400px;" controls>
+    <source src="siri.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
   <li>Ran the Siri Shortcuts using voice commands like “Turn on my LED” and “Turn off my LED”. The LED responded correctly in real-time.</li>
 </ol>
 
 <p>The system worked reliably on the local network. I confirmed that the response from the ESP32 server showed “LED is ON” or “LED is OFF” as expected. There was minimal latency between issuing the Siri command and the physical LED state change.</p>
 
-<p><strong>Suggested images:</strong></p>
-<ul>
-  <li>Photo of Xiao ESP32C3 with the LED turned ON</li>
+
   <img src="LEDon.jpg" alt="URL request to turn the lights on " width="400" height="400">
   <img src="LEDoff.jpg" alt="URL to turn the lights off " width="400" height="400">
-    <video style="height: 400px; width: 400px;" controls>
-    <source src="siri.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+    
 </ul> 
 
   <hr>
