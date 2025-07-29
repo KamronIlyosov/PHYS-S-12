@@ -113,9 +113,6 @@ void loop() {
   </pre>
 </div>
 
-      <img src="IP.jpg" alt="Arduino showing the IP address " width="550" height="300">
-
-   <img src="code1.jpg" alt="Arduino Code " width="400" height="400">
   <hr>
     <h5>Step 4: Control with Siri Shortcut</h5>
 <p>Once the Xiao ESP32C3 is connected to Wi-Fi and running the server, it can be controlled from any browser or automation system that can send HTTP requests. To control it with Siri, I used the Shortcuts app on iOS.</p>
@@ -139,22 +136,25 @@ void loop() {
 <p>To verify that the system was working correctly, I followed these steps:</p>
 
 <ol>
-  <li>Connected the Xiao ESP32-C3 to Wi-Fi and opened the Serial Monitor to view the assigned IP address.</li>
+  <li>Connected my microcontroller to WiFi and opened the Serial Monitor to view the assigned IP address.</li>
+  <img src="IP.jpg" alt="Arduino showing the IP address " width="500" height="300">
+
+   <img src="code1.jpg" alt="Arduino Code " width="500" height="400">
   <li>Tested the HTTP endpoints by visiting <code>http://&lt;192.168.0.194&gt;/on</code> and <code>http://&lt;192.168.0.194&gt;/off</code> in a web browser. The onboard LED responded immediately.</li>
   <br>
-  <video style="height: 400px; width: 400px;" controls>
+  <img src="LEDon.jpg" alt="URL request to turn the lights on " width="400" height="400">
+  <img src="LEDoff.jpg" alt="URL to turn the lights off " width="400" height="400">
+
+  <hr>
+  <li>Next, I ran the Siri Shortcuts using voice commands like “Turn on my LED” and “Turn off my LED”. The LED responded correctly in real time.</li>
+</ol>
+ <video style="height: 400px; width: 400px;" controls>
     <source src="siri.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
-  <li>Ran the Siri Shortcuts using voice commands like “Turn on my LED” and “Turn off my LED”. The LED responded correctly in real-time.</li>
-</ol>
-
 <p>The system worked reliably on the local network. I confirmed that the response from the ESP32 server showed “LED is ON” or “LED is OFF” as expected. There was minimal latency between issuing the Siri command and the physical LED state change.</p>
 
-
-  <img src="LEDon.jpg" alt="URL request to turn the lights on " width="400" height="400">
-  <img src="LEDoff.jpg" alt="URL to turn the lights off " width="400" height="400">
-    
+   
 </ul> 
 
   <hr>
