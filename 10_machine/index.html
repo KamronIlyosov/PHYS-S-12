@@ -1,151 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<title>PS70: Intro to Digital Fabrication </title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="../style.css" rel="stylesheet">
-
-<nav class="navbar navbar-expand-sm navbar-dark" style=" color: #EEE7E8;">
-  <div style="align-items: center; justify-content: center;" class="container-fluid">
-    <div class="flexrow">
-      <h2 class="nav-title">PS70 Fall 2024</h2>
-    </div>
-    <div class="navbar-nav">
-      <h4><a class="nav-link" href="../index.html">Home</a></h4>
-      <h4><a class="nav-link" href="../about.html">About</a></h4>
-    </div>
-  </div>
-</nav>
+<head>
+  <meta charset="UTF-8">
+  <title>PS70: Intro to Digital Fabrication</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+  <style>
+    img {
+      width: 350px;
+      height: 350px;
+      object-fit: cover;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
 
 <body>
+  <nav class="navbar navbar-expand-sm navbar-dark" style="color: #EEE7E8;">
+    <div style="align-items: center; justify-content: center;" class="container-fluid">
+      <div class="flexrow">
+        <h2 class="nav-title">PS70 Fall 2024</h2>
+      </div>
+      <div class="navbar-nav">
+        <h4><a class="nav-link" href="../index.html">Home</a></h4>
+        <h4><a class="nav-link" href="../about.html">About</a></h4>
+      </div>
+    </div>
+  </nav>
+
   <div style="margin-left: 40px; margin-right: 20px;">
-<br>
-<h4>Build Process (Step by Step)</h4>
+    <br>
+    <h4>Build Process (Step by Step)</h4>
 
-<h5>Step 1: Project Idea & Research</h5>
-<p>
-  I started by researching pancake art robots and other drawing machines on YouTube and Instructables. This helped me understand different designs, what features people liked, and common build mistakes to avoid. My goal was to make a WiFi-controlled robot that could turn digital sketches into pancake art—basically combining coding, robotics, and breakfast.
-</p>
+    <h5>Step 1: Project Idea & Research</h5>
+    <p>I started by researching pancake art robots and other drawing machines on YouTube and Instructables. This helped me understand different designs, what features people liked, and common build mistakes to avoid. My goal was to make a WiFi-controlled robot that could turn digital sketches into pancake art—basically combining coding, robotics, and breakfast.</p>
 
-<h5>Step 2: Brainstorming & Rough Sketches</h5>
-<p>
-  I drew a few rough sketches on paper of what I wanted the machine to look like. I mapped out where the motors, rails, frame, electronics, and the pan would sit. This step was important to get my ideas out and see if my design actually made sense before doing anything physical.
-</p>
+    <h5>Step 2: Brainstorming & Rough Sketches</h5>
+    <p>I drew a few rough sketches on paper of what I wanted the machine to look like. I mapped out where the motors, rails, frame, electronics, and the pan would sit. This step was important to get my ideas out and see if my design actually made sense before doing anything physical.</p>
 
-<h5>Step 3: Making a Materials & Tools List</h5>
-<p>
-  I wrote a checklist of everything I'd need, from stepper motors and 3D-printed brackets to jumper wires, power supplies, wood for the frame, and a mini frying pan. I double-checked what I could borrow from the lab, what I needed to print, and what needed to be bought.
-</p>
+    <h5>Step 3: Making a Materials & Tools List</h5>
+    <p>I wrote a checklist of everything I'd need, from stepper motors and 3D-printed brackets to jumper wires, power supplies, wood for the frame, and a mini frying pan. I double-checked what I could borrow from the lab, what I needed to print, and what needed to be bought.</p>
 
-<h5>Step 4: Workspace Setup & Safety Prep</h5>
-<p>
-  Before cutting or building, I made sure my workspace was organized and safe. I put on safety goggles, cleared the table, and organized all the tools and parts in bins. This made every step smoother and helped avoid losing small screws or parts.
-</p>
+    <h5>Step 4: Workspace Setup & Safety Prep</h5>
+    <p>Before cutting or building, I made sure my workspace was organized and safe. I put on safety goggles, cleared the table, and organized all the tools and parts in bins. This made every step smoother and helped avoid losing small screws or parts.</p>
 
-<h5>Step 5: Measuring and Marking Wood</h5>
-<p>
-  I measured and marked the wood pieces for the base and vertical supports using a ruler and square. Precision here is super important—a crooked frame would mess up the motion system later, so I double-checked all my marks before cutting.
-</p>
+    <h5>Step 5: Measuring and Marking Wood</h5>
+    <p>I measured and marked the wood pieces for the base and vertical supports using a ruler and square. Precision here is super important—a crooked frame would mess up the motion system later, so I double-checked all my marks before cutting.</p>
 
-<h5>Step 6: Cutting and Sanding Frame Pieces</h5>
-<p>
-  Using a bandsaw, I cut the wood to size, then sanded each edge to make sure everything fit tightly and no one would get a splinter. After sanding, I laid the pieces out to double-check that the lengths and angles were correct.
-</p>
-<!-- Student cutting wood on bandsaw, safety goggles -->
-<img src="kamronselfie.jpg" alt="Cutting wood on bandsaw" style="max-width:400px; margin-bottom:16px;">
+    <h5>Step 6: Cutting and Sanding Frame Pieces</h5>
+    <p>Using a bandsaw, I cut the wood to size, then sanded each edge to make sure everything fit tightly and no one would get a splinter. After sanding, I laid the pieces out to double-check that the lengths and angles were correct.</p>
+    <img src="kamronselfie.jpg" alt="Cutting wood on bandsaw">
 
-<h5>Step 7: Pre-drilling and Dry-Fitting the Frame</h5>
-<p>
-  I used a drill to make small pilot holes in the wood where the screws would go—this keeps the wood from splitting. Then, I did a dry fit, clamping the pieces together to make sure everything lined up, before committing with screws.
-</p>
+    <h5>Step 7: Pre-drilling and Dry-Fitting the Frame</h5>
+    <p>I used a drill to make small pilot holes in the wood where the screws would go—this keeps the wood from splitting. Then, I did a dry fit, clamping the pieces together to make sure everything lined up, before committing with screws.</p>
 
-<h5>Step 8: Assembling the Frame</h5>
-<p>
-  I assembled the frame by screwing the base and supports together, checking for squareness after every step. Once assembled, I tested its sturdiness by pushing on each side to make sure nothing wobbled.
-</p>
+    <h5>Step 8: Assembling the Frame</h5>
+    <p>I assembled the frame by screwing the base and supports together, checking for squareness after every step. Once assembled, I tested its sturdiness by pushing on each side to make sure nothing wobbled.</p>
 
-<h5>Step 9: 3D Printing Custom Parts</h5>
-<p>
-  I printed all custom brackets, belt clips, and motor mounts in PLA using the lab's 3D printers. I cleaned up each piece with a hobby knife or sandpaper to make sure everything fit together perfectly and moved smoothly on the rails.
-</p>
+    <h5>Step 9: 3D Printing Custom Parts</h5>
+    <p>I printed all custom brackets, belt clips, and motor mounts in PLA using the lab's 3D printers. I cleaned up each piece with a hobby knife or sandpaper to make sure everything fit together perfectly and moved smoothly on the rails.</p>
 
-<h5>Step 10: Organizing Hardware and Fasteners</h5>
-<p>
-  Before assembly got messy, I organized all the screws, nuts, washers, and small hardware into a labeled tray. I learned the hard way from other projects that a few lost screws can waste a ton of time.
-</p>
+    <h5>Step 10: Organizing Hardware and Fasteners</h5>
+    <p>Before assembly got messy, I organized all the screws, nuts, washers, and small hardware into a labeled tray. I learned the hard way from other projects that a few lost screws can waste a ton of time.</p>
 
-<h5>Step 11: Mounting the Linear Rails and Gantry</h5>
-<p>
-  I attached the black aluminum X-axis rail and linear rods to the frame using machine screws and the 3D-printed brackets. I double-checked that the rails were parallel and level to avoid any jamming. The main gantry slides back and forth smoothly now.
-</p>
-<!-- Wide shot of frame and gantry -->
-<img src="whiteroller.jpg" alt="Wide shot of frame and gantry" style="max-width:500px; margin-bottom:16px;">
-<!-- Side view, frame corner and 3D-printed bracket -->
-<img src="sideviewmachine.jpg" alt="Side view of frame and bracket" style="max-width:500px; margin-bottom:16px;">
+    <h5>Step 11: Mounting the Linear Rails and Gantry</h5>
+    <p>I attached the black aluminum X-axis rail and linear rods to the frame using machine screws and the 3D-printed brackets. I double-checked that the rails were parallel and level to avoid any jamming. The main gantry slides back and forth smoothly now.</p>
+    <img src="whiteroller.jpg" alt="Wide shot of frame and gantry">
+    <img src="sideviewmachine.jpg" alt="Side view of frame and bracket">
 
-<h5>Step 12: Installing and Aligning the Belt System</h5>
-<p>
-  Next, I installed the GT2 belts for both X and Y axes, threading them through the pulleys and attaching the ends to the carriage with 3D-printed clips. Getting the belt tension just right took a few tries—too loose, and it skips; too tight, and it binds. The close-ups really show how the belt system is anchored and aligned.
-</p>
-<!-- Belt/rail mounting detail, 3D-printed bracket and pulley -->
-<img src="topviewbelt.jpg" alt="Belt/rail mounting detail" style="max-width:380px; margin-bottom:16px;">
-<!-- Belt attachment detail, red belt clip -->
-<img src="redswitch.jpg" alt="Belt anchor detail" style="max-width:380px; margin-bottom:16px;">
-<!-- Carriage bottom detail, wheels/rollers and belt path -->
-<img src="bottomviewmachine.jpg" alt="Carriage bottom detail" style="max-width:380px; margin-bottom:16px;">
+    <h5>Step 12: Installing and Aligning the Belt System</h5>
+    <p>Next, I installed the GT2 belts for both X and Y axes, threading them through the pulleys and attaching the ends to the carriage with 3D-printed clips. Getting the belt tension just right took a few tries—too loose, and it skips; too tight, and it binds. The close-ups really show how the belt system is anchored and aligned.</p>
+    <img src="topviewmachine.jpg" alt="Belt/rail mounting detail">
+    <img src="redswitch.jpg" alt="Belt anchor detail">
+    <img src="bottomviewmachine.jpg" alt="Carriage bottom detail">
 
-<h5>Step 13: Mounting Stepper Motors and Pulleys</h5>
-<p>
-  I mounted both NEMA 17 stepper motors, one for each axis, using the 3D-printed brackets. I had to swap out an oversized drive gear for a smaller one, which finally let the belt mesh properly with the pulley. All bolts were tightened so nothing slipped during motion.
-</p>
-<!-- Stepper motor and Y-axis assembly, linear rails -->
-<img src="d5e6e511-a887-40e6-8b05-6b87944267b5.png" alt="Stepper and Y-axis assembly" style="max-width:450px; margin-bottom:16px;">
-<!-- Close-up, stepper motor and 3D-printed bracket -->
+    <h5>Step 13: Mounting Stepper Motors and Pulleys</h5>
+    <p>I mounted both NEMA 17 stepper motors, one for each axis, using the 3D-printed brackets. I had to swap out an oversized drive gear for a smaller one, which finally let the belt mesh properly with the pulley. All bolts were tightened so nothing slipped during motion.</p>
+    <img src="d5e6e511-a887-40e6-8b05-6b87944267b5.png" alt="Stepper and Y-axis assembly">
 
+    <h5>Step 14: Installing Limit Switches for Homing</h5>
+    <p>I hot-glued two micro limit switches at the home positions for the X and Y axes. These are wired to the ESP32 and are used for zeroing the position at startup. Careful alignment was needed so the carriage triggers the switch consistently and gently.</p>
+    <img src="blueswitch.jpg" alt="Limit switch mounted on wood">
 
-<h5>Step 14: Installing Limit Switches for Homing</h5>
-<p>
-  I hot-glued two micro limit switches at the home positions for the X and Y axes. These are wired to the ESP32 and are used for zeroing the position at startup. Careful alignment was needed so the carriage triggers the switch consistently and gently.
-</p>
-<!-- Macro shot, micro limit switch glued to wood, soldered wires -->
-<img src="blueswitch.jpg" alt="Limit switch mounted on wood" style="max-width:320px; margin-bottom:16px;">
+    <h5>Step 15: Wiring Up Electronics and Breadboard</h5>
+    <p>I wired up the ESP32, stepper motor drivers, limit switches, and pump relay on a breadboard. There were a lot of jumper wires, so I bundled them to keep the workspace neat and prevent accidental disconnects during testing.</p>
 
-<h5>Step 15: Wiring Up Electronics and Breadboard</h5>
-<p>
-  I wired up the ESP32, stepper motor drivers, limit switches, and pump relay on a breadboard. There were a lot of jumper wires, so I bundled them to keep the workspace neat and prevent accidental disconnects during testing.
-</p>
-<!-- You could add another breadboard wiring image here if you have one -->
+    <h5>Step 16: Mounting the Pump and Batter Delivery System</h5>
+    <p>I glued the 12V water pump inside the frame and ran a food safe tube from the batter reservoir to the dispenser head above the pan. After a quick test with water, I found I needed more power, so I switched to a 12V supply for steady batter flow.</p>
 
-<h5>Step 16: Mounting the Pump and Batter Delivery System</h5>
-<p>
-  I glued the 12V water pump inside the frame and ran a food-safe tube from the batter reservoir to the dispenser head above the pan. After a quick test with water, I found I needed more power, so I switched to a 12V supply for steady batter flow.
-</p>
+    <h5>Step 17: Full Assembly and Cable Management</h5>
+    <p>With all parts in place, I did a final assembly making sure all screws were tight, belts were tensioned, and cables were routed safely through braided sleeves to keep them away from the hot pan area. The frame is now sturdy, and everything looks neat.</p>
+    <img src="sideviewmachine.jpg" alt="Fully assembled pancake machine">
+    <img src="kamrontopviewmachine.jpg" alt="Top down view of gantry">
 
-<h5>Step 17: Full Assembly and Cable Management</h5>
-<p>
-  With all parts in place, I did a final assembly—making sure all screws were tight, belts were tensioned, and cables were routed safely through braided sleeves to keep them away from the hot pan area. The frame is now sturdy, and everything looks neat.
-</p>
-<!-- Wide shot of frame and gantry (again, showing full assembly) -->
-<img src="sideviewmachine.jpg" alt="Fully assembled pancake machine" style="max-width:600px; margin-bottom:16px;">
-<!-- Top down view of gantry -->
-<img src="kamrontopviewmachine.jpg" alt="Top down view of gantry" style="max-width:500px; margin-bottom:16px;">
+    <h5>Step 18: First Power-On and Axis Testing</h5>
+    <p>For the first test, I powered up the ESP32 and checked each axis one at a time with basic movement commands. This helped me verify direction, range, and step size. I also checked that the limit switches stopped each axis at the home position as planned.</p>
 
-<h5>Step 18: First Power-On and Axis Testing</h5>
-<p>
-  For the first test, I powered up the ESP32 and checked each axis one at a time with basic movement commands. This helped me verify direction, range, and step size. I also checked that the limit switches stopped each axis at the home position as planned.
-</p>
+    <h5>Step 19: Calibration and Pancake Drawing Tests</h5>
+    <p>I calibrated the machine by measuring the distance traveled per step and adjusting the software until shapes like squares and circles came out accurate on the pan. I tweaked the pump on/off timing to get perfect pancake lines, and made several test pancakes to tune things in.</p>
 
-<h5>Step 19: Calibration and Pancake Drawing Tests</h5>
-<p>
-  I calibrated the machine by measuring the distance traveled per step and adjusting the software until shapes like squares and circles came out accurate on the pan. I tweaked the pump on/off timing to get perfect pancake lines, and made several test pancakes to tune things in.
-</p>
-
-<h5>Step 20: Setting Up WiFi Control and Final Demo</h5>
-<p>
-  The last step was coding a web-based drawing interface with HTML5 Canvas. I set up the ESP32 as a WiFi server, so I could send my drawings straight to the robot from any device. After testing, the machine could turn my sketches into real pancakes! It’s awesome to see everything working together—mechanical, electrical, and code.
-</p>
-<!-- Overhead shot, student using the machine, hands-on -->
-<img src="sideviewmachine.jpg" alt="User controlling machine from above" style="max-width:350px; margin-bottom:16px;">
+    <h5>Step 20: Setting Up WiFi Control and Final Demo</h5>
+    <p>The final step was creating a web-based interface with HTML5 Canvas so the ESP32 could receive pancake drawings over WiFi. We programmed it to draw a large circle, but it ended up being too big for the machine’s range. During testing, a ground wire accidentally unplugged and the 12V line shorted with 5V, frying our microcontroller. While we hit a last-minute setback, this is still a work in progress, and we plan to fully finish and demo the working pancake machine by tomorrow morning.</p>
+    <img src="sideviewmachine.jpg" alt="User controlling machine from above">
 
   </div>
 </body>
+
+</html>
