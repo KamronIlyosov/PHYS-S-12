@@ -1,36 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<title>PS70: Intro to Digital Fabrication </title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="../style.css" rel="stylesheet">
-
-
-<nav class="navbar navbar-expand-sm navbar-dark" style=" color: #EEE7E8;">
-  <div style="align-items: center; justify-content: center;" class="container-fluid">
-    <div class="flexrow">
-      <h2 class="nav-title">PS70 Fall 2024</h2>
-    </div>
-    <div class="navbar-nav">
-      <h4><a class="nav-link" href="../index.html">Home</a></h4>
-      <h4><a class="nav-link" href="../about.html">About</a></h4>
-    </div>
-  </div>
-</nav>
+<head>
+  <meta charset="UTF-8">
+  <title>PS70: Intro to Digital Fabrication</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+</head>
 
 <body>
-<xmp style="display:none;">
-<div class="textcontainer">
-<p class="margin"></p>
+  <nav class="navbar navbar-expand-sm navbar-dark" style="color: #EEE7E8;">
+    <div style="align-items: center; justify-content: center;" class="container-fluid">
+      <div class="flexrow">
+        <h2 class="nav-title">PS70 Fall 2024</h2>
+      </div>
+      <div class="navbar-nav">
+        <h4><a class="nav-link" href="../index.html">Home</a></h4>
+        <h4><a class="nav-link" href="../about.html">About</a></h4>
+      </div>
+    </div>
+  </nav>
 
-<h3>Final Project: [INSERT FINAL PROJECT HERE]</h3>
+  <div class="textcontainer" style="margin: 40px;">
+    <p class="margin"></p>
+    <h1>Final Project: Electricity-Generating Leg Brace</h1>
+    <h2>Check-In & Progress Log</h2>
+    <hr>
 
+    <p>Overview: I’m designing a leg brace that generates electricity as you walk, converting mechanical energy from leg motion into usable electrical power. The end goal is to create a wearable device that can power small electronics such as phones.</p>
 
-</div>
-</xmp>
+    <h3>Progress So Far:</h3>
+    <ul>
+      <li>Motor Update: Replaced the original DC motor with a stepper motor to reduce gear jamming and mechanical noise. Stepper motors are also better suited for stable energy harvesting.</li>
+      <li>Pulley & Belt Transmission: Developed a pulley system to transfer motion. Initial pulley sizes didn’t generate enough torque, so I designed and 3D printed larger and smaller pulleys to increase the gear ratio.</li>
+      <li>Electrical Circuit: Built a dual-bridge rectifier system to convert AC output from both sets of stepper motor coils into DC. Added capacitors for voltage smoothing, a 5V linear voltage regulator, and LEDs to test voltage output.</li>
+      <li>Voltage Regulation: Linear regulators proved inefficient with varying input voltage. While I found some buck converters in the lab, I realized that a buck-boost converter is ideal since it can handle both voltage drops and spikes to maintain a steady 5V output.</li>
+      <li>Mechanical Fit: Designed a curved mount in CAD to match the shape of a calf. This component will help securely attach the brace while maintaining comfort during walking.</li>
+    </ul>
+
+    <h3>Goals for Wednesday & Thursday:</h3>
+    <ul>
+      <li>Have the full mechanical + electrical system working together while walking.</li>
+      <li>Achieve a consistent and usable 5V output with enough current to charge a device.</li>
+      <li>Begin testing with a buck-boost converter under real walking conditions.</li>
+    </ul>
+
+   
+    </ul>
+
+    <br><br>
+    <h2>Demo Video</h2>
+    <!-- Replace src with your actual video file path when ready -->
+    <video width="640" height="360" controls>
+      <source src="demo-placeholder.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p><em>(Placeholder)</em></p>
+
+    <br><br>
+    <h2>Processing Page</h2>
+    <p><em>(This section will be filled in later with detailed documentation.)</em></p>
+
+  </div>
+
 </body>
-
-<script src="../strapdown.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
 
 </html>
