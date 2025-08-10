@@ -2,15 +2,36 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>PS70: Intro to Digital Fabrication</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../style.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>PS70: Intro to Digital Fabrication — Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../style.css" rel="stylesheet" />
+  <style>
+    /* small inline styles for documentation layout */
+    .doc-toc a { text-decoration: none; }
+    .placeholder {
+      border: 2px dashed #cccccc;
+      border-radius: 8px;
+      padding: 40px;
+      text-align: center;
+      color: #777;
+      background: #fafafa;
+    }
+    pre.codebox {
+      background:#1e1e1e;color:#dcdcdc;padding:1rem;border-radius:6px;overflow:auto;
+    }
+    .note { background:#fff3cd; padding:10px; border-left:4px solid #ffe08a; border-radius:4px; }
+    .warn { background:#f8d7da; padding:10px; border-left:4px solid #f5a6ad; border-radius:4px; }
+    .small-muted { font-size:0.9rem; color:#666; }
+    .material-table th, .material-table td { vertical-align: middle; }
+  </style>
 </head>
 
 <body>
+  <!-- NAVBAR (keeps your theme) -->
   <nav class="navbar navbar-expand-sm navbar-dark" style="color: #EEE7E8;">
-    <div style="align-items: center; justify-content: center;" class="container-fluid">
+    <div class="container-fluid" style="align-items: center; justify-content: center;">
       <div class="flexrow">
         <h2 class="nav-title">PS70 Fall 2024</h2>
       </div>
@@ -21,69 +42,498 @@
     </div>
   </nav>
 
-  <div class="textcontainer" style="margin: 40px;">
-    <p class="margin"></p>
-    <h1>Final Project: Electricity-Generating Leg Brace</h1>
-    <h2>Check-In & Progress Log</h2>
-    <hr>
-
-    <p>Overview: I’m designing a leg brace that generates electricity as you walk, converting mechanical energy from leg motion into usable electrical power. The end goal is to create a wearable device that can power small electronics such as phones.</p>
-
-    <h3>Progress So Far:</h3>
-    <ul>
-      <li>Motor Update: Replaced the original DC motor with a stepper motor to reduce gear jamming and mechanical noise. Stepper motors are also better suited for stable energy harvesting.</li>
-      <li>Pulley & Belt Transmission: Developed a pulley system to transfer motion. Initial pulley sizes didn’t generate enough torque, so I designed and 3D printed larger and smaller pulleys to increase the gear ratio.</li>
-      <li>Electrical Circuit: Built a dual-bridge rectifier system to convert AC output from both sets of stepper motor coils into DC. Added capacitors for voltage smoothing, a 5V linear voltage regulator, and LEDs to test voltage output.</li>
-      <li>Voltage Regulation: Linear regulators proved inefficient with varying input voltage. While I found some buck converters in the lab, I realized that a buck-boost converter is ideal since it can handle both voltage drops and spikes to maintain a steady 5V output.</li>
-      <li>Mechanical Fit: Designed a curved mount in CAD to match the shape of a calf. This component will help securely attach the brace while maintaining comfort during walking.</li>
-    </ul>
-
-    <h3>Goals for Wednesday & Thursday:</h3>
-    <ul>
-      <li>Have the full mechanical + electrical system working together while walking.</li>
-      <li>Achieve a consistent and usable 5V output with enough current to charge a device.</li>
-      <li>Begin testing with a buck-boost converter under real walking conditions.</li>
-    </ul>
-
-   
-    </ul>
-
-    <br><br>
-    <h2>Demo Video</h2>
-    <!-- Replace src with your actual video file path when ready -->
-    <video width="640" height="360" controls>
-      <source src="demo-placeholder.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <p><em>(Placeholder)</em></p>
-
-    <br><br>
-    <h2>Processing Page</h2>
-    <p><em>(This section will be filled in later with detailed documentation.)</em></p>
-
-  </div>
-
- <div class="textcontainer" style="margin: 40px;">
-    <h1>Media Gallery</h1>
-    <p>Here are some key visuals showing my electricity-generating leg brace project in action.</p>
-    
-    <div class="row text-center justify-content-center">
-  <div class="col-md-4">
-    <img src="tony.jpg" alt="Brace Image 1" style="width: 300px; height: 400px; object-fit: cover; border-radius: 10px; border: 1px solid #ccc;">
-    <p><em>Brace design (JPG)</em></p>
-  </div>
-  <div class="col-md-4">
-    <img src="demofinal.gif" alt="Brace GIF" style="width: 300px; height: 400px; object-fit: cover; border-radius: 10px; border: 1px solid #ccc;">
-    <p><em>Walking simulation (GIF)</em></p>
-  </div>
-  <div class="col-md-4">
-    <img src="offleg.jpg" alt="Brace Image 2" style="width: 300px; height: 400px; object-fit: cover; border-radius: 10px; border: 1px solid #ccc;">
-    <p><em>Mounted system (JPG)</em></p>
-  </div>
-</div>
-
-      </div>
+  <div class="container my-4">
+    <!-- button to the check-in page (update path if needed) -->
+    <div class="mb-3">
+      
     </div>
+
+    <!-- Header -->
+    <header class="mb-4">
+      <h1>Final Project Documentation</h1>
+      <h3 class="text-muted">Electricity Generating Leg Brace: thorough build log, Materials, wiring notes, testing templates</h3>
+    </header>
+
+    <!-- Executive summary (short) -->
+    <section id="executive-summary" class="mb-4">
+      <h4>Executive summary</h4>
+      <p>
+        My final project is a wearable walking device that harvests mechanical energy from leg motion and converts it to electrical energy. I built it using a stepper motor as generator, two full-bridge rectifiers,
+        smoothing capacitors, a pulley reduction system (≈<strong>5.8:1</strong> — approx <strong>6:1</strong>), and a 3D-printed calf-mount combined with
+        laser-cut acrylic plates. The core idea is to create a robust, repeatable prototype that demonstrates human motion energy harvesting and points toward
+        future, more efficient energy-harvesting & storage systems (buck-boost, supercaps, battery + charger).
+      </p>
+      <img src="onleg.jpg" alt="Image" width="500" height="450">
+
+      <img src="walking.jpg" alt="Image" width="500" height="450">
+
+
+      <h4>
+        <strong>Motivation:</strong> I'm really into environmental preservation and wanted to explore practical ways people could generate small amounts
+        of electricity while doing everyday activities. The idea: capture otherwise wasted mechanical energy while walking and convert it to useful electrical power.
+      </h4>
+    </section>
+
+    <!-- Table of contents -->
+    <section class="mb-4">
+      <h4>Contents</h4>
+      <ul class="doc-toc">
+        <li><a href="#materials">Materials & BOM</a></li>
+        <li><a href="#tools">Tools & Machine Settings</a></li>
+        <li><a href="#design-files">Design files & CAD notes</a></li>
+        <li><a href="#fabrication">Fabrication steps (very detailed)</a></li>
+        <li><a href="#wiring">Wiring & circuit documentation</a></li>
+        <li><a href="#testing">Testing & measurements (templates)</a></li>
+        <li><a href="#assembly-finish">Final assembly, finishing & comfort</a></li>
+        <li><a href="#safety">Safety notes</a></li>
+        <li><a href="#lessons">Lessons learned & improvements</a></li>
+        <li><a href="#appendix">part names / print settings / logs</a></li>
+      </ul>
+
+  
+    </section>
+
+    <!-- Demo placeholder -->
+    <section id="demo" class="mb-4">
+      <h4>Demo (video) placeholder</h4>
+      <div class="ratio ratio-16x9">
+        <div class="placeholder">
+          <strong>Demo video</strong>
+          <div class="small-muted mt-2">Replace with your recorded demo (e.g., <code>demo.mp4</code>) or an embedded YouTube link.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Materials & BOM -->
+    <section id="materials" class="mb-4">
+      <h4>Materials </h4>
+      <p>Below is the materials table describing items I used. Quantities and approximate specs included </p>
+
+      <table class="table table-bordered material-table">
+        <thead class="table-light">
+          <tr>
+            <th>Item</th>
+            <th>Qty</th>
+            <th>Spec / Notes</th>
+            <th>Purpose</th>
+            <th>Example / local source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Stepper motor (used as generator)</td>
+            <td>1</td>
+            <td>NEMA 17</td>
+            <td>Rotational generator element (coils produce AC when spun)</td>
+            <td>Lab </td>
+          </tr>
+          <tr>
+            <td>Laser cut acrylic plates (8" x 3")</td>
+            <td>2</td>
+            <td>3 mm acrylic; front plate with motor holes</td>
+            <td> chassis & motor mount</td>
+            <td>Laser cutter (Lab)</td>
+          </tr>
+          <tr>
+            <td>3D printed pulleys</td>
+            <td>2</td>
+            <td>Small: 17T; Large: 100T (teeth counts used)</td>
+            <td>Gear ratio increase </td>
+            <td>Printed in PLA</td>
+          </tr>
+          <tr>
+            <td>M4 set screws</td>
+            <td>4</td>
+            <td>Metric M4, used to lock pulley to shaft</td>
+            <td>Mechanical fastening of pulleys</td>
+            <td>Lab</td>
+          </tr>
+          <tr>
+            <td>Bolts, washers, nuts</td>
+            <td>various</td>
+            <td>Assorted sizes (M4, M6) with many washers for spacing</td>
+            <td>Axle, mounting, spacing</td>
+            <td>Lab</td>
+          </tr>
+          <tr>
+            <td>Full bridge rectifiers</td>
+            <td>2</td>
+            <td>Single package bridge </td>
+            <td>Convert coil AC to DC (one bridge per coil set)</td>
+            <td>Lab</td>
+          </tr>
+          <tr>
+            <td>Capacitors</td>
+            <td>2</td>
+            <td>100 µF electrolytic </td>
+            <td>Smoothing the rectified DC</td>
+            <td>Lab</td>
+          </tr>
+          <tr>
+            <td>Buck boost converter / USB charging board (ended up not needing it)</td>
+            <td>1–2</td>
+            <td>Input range must match generator + storage; ≥3V input (didnt match my project)</td>
+            <td>Regulate to 5V for USB output / phone charging </td>
+            <td> Amazon</td>
+          </tr>
+          <tr>
+            <td>Electro cookie protoboard (protoboard)</td>
+            <td>1</td>
+            <td>Striped protoboard I used (solderable)</td>
+            <td>Solder permanent circuit vs. breadboard</td>
+            <td>Lab</td>
+          </tr>
+          <tr>
+            <td>Velcro (12 ft)</td>
+            <td>1 roll</td>
+            <td>12 ft total; heavy duty</td>
+            <td>Strapping the assembly to calf</td>
+            <td>Michael's (biking trip!)</td>
+          </tr>
+          <tr>
+            <td>Hot glue, silicone padding</td>
+            <td>various</td>
+            <td>Comfort pads and temporary fixes</td>
+            <td>Comfort and temporary anti slip</td>
+            <td>Lab</td>
+          </tr>
+          <tr>
+            <td>LEDs (demo)</td>
+<td>18</td>
+<td>Standard low current LEDs</td>
+<td>Quick demonstration of power generation</td>
+<td>Lab</td>
+</tr>
+</tbody>
+</table>
+
+<div style="text-align: center;">
+  <img src="materials1.jpg" alt="Front Plate" width="700" height="400">
+</div>
+</section>
+
+    <!-- Tools & machine settings -->
+    <section id="tools" class="mb-4">
+      <h4>Tools & machine settings</h4>
+      <table class="table table-sm">
+        <thead class="table-light">
+          <tr><th>Tool</th><th>Typical settings / notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Laser cutter</td><td>Acrylic 3mm: test on scrap; ensure ventilation; engrave text on one side (I added "Kamrons generator").</td></tr>
+          <tr><td>3D printer</td><td>20–30% infill, supports for overhangs; my calf mount took ~10 hours to print.</td></tr>
+          <tr><td>Drill / hand tools</td><td>Drill out fitment holes when tight; countersink if needed.</td></tr>
+          <tr><td>Soldering iron</td><td>Basic solder in the lab, heat shrink tubing for safety on exposed wire.</td></tr>
+          <tr><td>Multimeter</td><td>Measure AC on motor coils, DC post rectifier, and under load to log performance.</td></tr>
+
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Design files -->
+    <section id="design-files" class="mb-4">
+      <h4>Design files & CAD notes</h4>
+      <p>All mechanical parts were designed in Fusion 360. File naming I used (example):</p>
+      <ul>
+        <li><code>plate_front.dxf</code> - laser front plate with motor cutouts and bolt holes</li>
+        <img src="mounrside.jpg" alt="Front Plate " width="500" height="350">
+        <li><code>plate_back.dxf</code> — back plate plain (or with mounting holes)</li>
+        <img src="Text.jpg" alt="Back Plate " width="500" height="350">
+        <li><code>pulley_17T.stl</code> — small motor-mounted pulley (17 teeth)</li>
+        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+<model-viewer src="TinyPulley.stl" 
+              alt="3D model"
+              auto-rotate 
+              camera-controls 
+              style="width: 600px; height: 400px;">
+</model-viewer>
+
+        <li><code>pulley_100T.stl</code> — large calf-mounted pulley (100 teeth)</li>
+        <model-viewer src="Big Pulley.stl" 
+              alt="3D model"
+              auto-rotate 
+              camera-controls 
+              style="width: 600px; height: 400px;">
+</model-viewer>
+        <li><code>calf_mount.stl</code> — 3D printed calf cradle</li>
+        <model-viewer src="Calf Mount.stl" 
+              alt="3D model"
+              auto-rotate 
+              camera-controls 
+              style="width: 600px; height: 400px;">
+</model-viewer>
+
+      </ul>
+      
+    </section>
+
+    <!-- Fabrication steps - very detailed -->
+    <section id="fabrication" class="mb-5">
+      <h4>Fabrication & build steps </h4>
+
+      <!-- Step 1 -->
+      <article class="mb-3">
+        <h5>Step 1 - Laser cut acrylic plates (front/back)</h5>
+        <ol>
+          <li>Prepare the CAD: export <code>plate_front.dxf</code> and <code>plate_back.dxf</code>. The front plate includes precise motor mount holes, pulley clearance, and four corner holes for bushings/bolts. On the back plate I added the engraved label: <em>"Kamrons generator"</em>.</li>
+          <li>Material: choose acrylic 3 mm. Place material on laser bed (face you want engraved facing up). </li>
+          <li>Laser settings: run a small test cut; then cut the plates. Collect the plates and remove protective film.</li>
+          <li>Initial fit: I found fitment issues (holes slightly too tight). I carefully reamed/drilled out motor holes to achieve a smooth fit.</li>
+        </ol>
+
+         <img src="lasercut.gif" alt="gif " width="400" height="350">
+      </article>
+<hr>
+      <!-- Step 2 -->
+      <article class="mb-3">
+        <h5>Step 2 - 3D print pulleys (17T + 100T) and calf mount</h5>
+        <ol>
+          <li>Design: I modeled both pulleys in Fusion 360 to achieve the target ratio. The small pulley is <code>17T</code> (motor shaft), the large is <code>100T</code> (calf axle). This yields a gear ratio of approximately:
+            <div class="small-muted">100 / 17 = <strong>5.9</strong> → ≈ <strong>5.9:1</strong> (≈ 6:1)</div>
+          </li>
+          <li>Export STLs for the pulleys and calf mount. Double check shaft dimensions, measure motor shaft and match the pulley to that.</li>
+          <li>Print settings: 15–30% infill, supports as required. The calf mount printed for about 10 hours in my setup.</li>
+          <li>Print failure handling: my first calf mount print failed (post print I tuned printer settings with Jessica and reprinted).</li>
+          <li>After successful print, remove supports, sand mating surfaces lightly so it fits the leg comfortably.</li>
+        </ol>
+         <img src="3dprint.gif" alt="gif " width="400" height="350">
+      </article>
+<hr>
+      <!-- Step 3 -->
+      <article class="mb-3">
+        <h5>Step 3 - Assembly of pulleys and motor</h5>
+        <ol>
+          <li>Mounting small pulley to motor:
+            <ol type="a">
+              <li>Slide the 17T pulley onto the motor shaft. Use M4 set screws to lock it in place.</li>
+              <li>Tighten set screws gently while holding the shaft so the pulley doesn't shift.</li>
+            </ol>
+          </li>
+
+      <img src="smallpulley.jpg" alt="Image" width="500" height="450">
+          <li>Mounting big pulley and calf mount:
+            <ol type="a">
+              <li>I used a bolt as the calf-axle. The big pulley (100T) is placed on that bolt and secured with washers on both sides to establish spacing.</li>
+              <li>To attach the printed calf mount to that bolt I ran a bolt through the calf mount (washer above), then through the front acrylic, then through the other plate, and finally secured with a nut, stacking many washers as spacers to make the parts rotate freely while staying aligned.</li>
+              <li>Note: I used many washers because I didn't have a shaftn collar or keyed fitting; it's a temporary shim approach to maintain spacing. In my next iteration I will consider a keyed shaft, a proper bearing, or a printed clamp to avoid excessive washers.</li>
+            </ol>
+          </li>
+
+      <img src="bigpulley.jpg" alt="Image" width="400" height="350">
+          <li>After assembly, test rotation by hand. Make small adjustments (loosen/tighten washers, ect.) until the belt path runs and spin is smooth.</li>
+          <li>If the calf mount slipped on the bolt while walking (it did), I temporarily fixed it with hot glue. This is a band aid, see Improvements section for a permanent fix (shaft collar, keyed hub, or dedicated clamp).</li>
+        </ol>
+
+      <img src="hotglue.jpg" alt="Image" width="400" height="350">
+      </article>
+<hr>
+      <!-- Step 4 -->
+      <article class="mb-3">
+        <h5>Step 4 - Pulley transmission & belt</h5>
+        <ol>
+          <li>Install the belt around the pulleys and adjust center to center distance between pulleys so the belt tension is moderate, not too tight to bind the motor/axle, not too loose that it slips.</li>
+          <li>Verify gear ratio by rotating the calf pulley one revolution and recording motor pulley revolutions (or using teeth counts: 100 / 17 ≈ 5.88 motor revolutions per calf revolution).</li>
+          <li>Spin test: rotate calf pulley slowly and check motor shaft; connect multimeter and verify AC voltage on coil wires (see wiring section).</li>
+        </ol>
+
+      <img src="system.jpg" alt="Image" width="400" height="350">
+      </article>
+
+    </section>
+<hr>
+    <!-- Wiring & Circuit -->
+    <section id="wiring" class="mb-5">
+      <h4>Wiring & circuit documentation</h4>
+      <p>Below I document how I wired the stepper coils to the rectifiers and smoothing caps, plus the key problems I ran into and how I tested.</p>
+
+      <h5>Overview of the approach I used</h5>
+      <ol>
+        <li>Stepper motor has multiple coils which produce AC when spun. I used two full-bridge rectifiers, one per coil set — to produce DC from each coil set.</li>
+        <li>Each rectifier’s DC output is smoothed with a 100 µF electrolytic capacitor (rated above expected voltage).</li>
+        <li>I initially tested by lighting LEDs directly from the rectified/smoothed output to demonstrate power (LEDs flashed very bright).</li>
+        <li>Later I attempted to drive a buck-boost converter / USB charging board but discovered that my generator produced voltages that sometimes fell below the converter’s minimum input (3 V), which produced unstable boosting and risked over-voltage spikes.</li>
+      </ol>
+
+      <h5>Typical connection (conceptual)</h5>
+      <pre class="codebox">
+Motor coil A (2 wires)  ----> Full bridge rectifier A  ----> +DC (smoothing cap 100µF) ----> common DC rail (to load)
+Motor coil B (2 wires)  ----> Full bridge rectifier B  ----> +DC (smoothing cap 100µF) ----> common DC rail (to load)
+      </pre>
+
+      <img src="breadboard.jpg" alt="Image" width="500" height="450">
+<hr>
+      <h5>How I soldered it</h5>
+      <ol>
+        <li>Soldered each coil pair to its own bridge rectifier (AC inputs). Confirm polarity and continuity on the bridge before hooking to capacitors.</li>
+        <li>On each rectifier I connected a 100 µF electrolytic capacitors between + and - (observe polarity!).</li>
+        <li>I used an LED (and resistor as needed) to prove there was DC output. The LEDs lit brightly when walking.</li>
+        <li>I later moved from a breadboard to a soldered protoboard ("electro cookie") to make the connections robust. This reduced intermittent contact and improved test reliability.</li>
+      </ol>
+
+      <img src="circuitry.jpg" alt="Image" width="500" height="450">
+<hr>
+      <h5>Suggested wiring improvements (electrical design)</h5>
+      <ul>
+        <li>Energy buffer: add a supercapacitor or small battery pack (with proper charge controller) so the buck boost sees a relatively steady input and doesn’t need to try to boost from sub 3 V on startup.</li>
+        <li>Protection: add TVS diodes or a zener clamp on the buck boost input to protect downstream electronics from voltage spikes.</li>
+      </ul>
+<hr>
+      <h5>Simple wiring checklist (before applying power)</h5>
+      <ol>
+        <li>Verify rectifier polarity: AC pins go to coils, + and - are DC outputs.</li>
+        <li>Confirm capacitor polarity.</li>
+        <li>Use multimeter on diode check to make sure theres no shorted diodes on the bridge.</li>
+        <li>With manual spin, confirm DC voltage exists at DC output (no load), then add test load and measure again.</li>
+      </ol>
+    </section>
+<hr>
+    <!-- Testing & measurements -->
+    <section id="testing" class="mb-5">
+      <h4>Testing & measurement templates</h4>
+      <p>Here are the steps I used to test the power generation</p>
+
+      <h5>Test procedure</h5>
+      <ol>
+        <li>Set multimeter to AC to measure between each coil pair with Bobby while manually spinning the motor to confirm AC generation.</li>
+        <li>Switch multimeter to DC after the rectifier & filter capacitor to measure flat DC voltage (no-load).</li>
+        <li>Hook up LED(s) or a known resistor load and measure voltage under load.</li>
+        <li>Record the difference between no load and load voltages, and compute open circuit vs loaded power if you have current measurements.</li>
+      </ol>
+<hr>
+      <h5>Measurement log </h5>
+<table class="table table-sm table-bordered">
+  <thead class="table-light">
+    <tr>
+      <th>Test label</th>
+      <th>Condition</th>
+      <th>No-load V_DC (V)</th>
+      <th>Loaded V_DC (V)</th>
+      <th>Load (Ω or device)</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Coil A - walking</td>
+      <td>Walking @ slow pace</td>
+      <td>4.8</td>
+      <td>3.9</td>
+      <td>18 LEDs (≈ bright)</td>
+      <td>Very bright output, consistent over multiple steps</td>
+    </tr>
+    <tr>
+      <td>Coil B - hand spin</td>
+      <td>Manual spin</td>
+      <td>6.1</td>
+      <td>5.0</td>
+      <td>18 LEDs</td>
+      <td>Peak voltage on fast spin, LEDs near max brightness</td>
+    </tr>
+  </tbody>
+</table>
+
+
+      
+    </section>
+<hr>
+    <!-- Final assembly & finish -->
+    <section id="assembly-finish" class="mb-5">
+      <h4>Final assembly, finishing & comfort</h4>
+      <ol>
+        <li>Once the pulley, motor, and calf mount were working I glued the electronic protoboard between the two acrylic plates so the center looked clean and the electronics had protection from the outside.</li>
+
+        <li>I used silicone padding where the assembly contacts the calf for comfort, thin soft silicone pad glued to the printed mount made walking and wearing comfortable for demo.</li>
+
+         <img src="silicone.jpg" alt="image " width="500" height="450">
+        <li>For the strap system I added two bolts through the acrylic to anchor the velcro. Then I looped the velcro through my prebuilt velcro holders I made in fusion on the calf mount so the brace straps tightly to the leg.</li>
+
+         <img src="strap.jpg" alt="image " width="500" height="450">
+        <li>once everything was verified I closed the second acrylic plate and secured it with nuts. I tested the assembly by walking around the lab slowly and checking the generator output and mechanical stability.</li>
+      </ol>
+    </section>
+<hr>
+    <!-- Safety -->
+    <section id="safety" class="mb-4">
+      <h4>Safety notes & PPE</h4>
+      <ul>
+        <li>Wear eye protection when using laser cutters, drills, and when sanding 3D prints.</li>
+        <li>Observe polarity on electrolytic capacitors because reverse connection can cause explosion.</li>
+        <li>When soldering, work in a ventilated area.</li>
+        <li>Hot glue and silicone can bond skin.</li>
+        <li>Do not connect a phone or other expensive electronics directly to the generator without proper charging circuitry and surge protection.</li>
+      </ul>
+    </section>
+<hr>
+    <!-- Lessons learned & improvements -->
+    <section id="lessons" class="mb-4">
+      <h4>Lessons learned, known issues & improvements</h4>
+      <h5>Problems I ran into</h5>
+      <ul>
+        <li>Fitment issues on laser cut plate holes, I fixed this by drilling carefully.</li>
+        <li>Failed 3D print (calf mount) re tuned printer with Bobby, reprinted.</li>
+        <li>Calf mount slipping on bolt: I used hot glue as a temporary fix, but this is not ideal.</li>
+        <li>Buck boost converter minimum input (≈3 V) problem: my generator sometimes produces < 3 V, causing the converter to malfunction and spike in voltage. I therefore used the generator to drive LEDs for demo rather than charging a phone directly. I couldnt get a proper gear ratio after failed NEMA 17 gearbox prints and it was out of my budget online.</li>
+      </ul>
+
+         <img src="fail.jpg" alt="image " width="500" height="450">
+<hr>
+      <h5>Short term improvements (easy)</h5>
+      <ul>
+        <li>Add a shaft collar or keyed hub to secure the calf mount to the axle (no hot glue or washers).</li>
+        <li>Replace stacked washers with properly sized spacers or printed bushings for better alignment.</li>
+        <li>Use Schottky diodes to OR join rectified outputs instead of directly paralleling outputs.</li>
+        <img src="Diode.jpg" alt="Image" width="500" height="450">
+      </ul>
+<hr>
+      <h5>Medium/Long-term upgrades</h5>
+      <ul>
+        <li>Add an energy buffer (supercapacitor or small Lithium ion cell + charge controller) to provide a steady input to the buck boost converter.</li>
+        <li>Design a custom generator winding or use a permanent magnet generator optimized for low speed human motion for better efficiency.</li>
+        <li>Use bearings and lower friction for the calf axle to reduce losses.</li>
+        <li>Instrument the device with a microcontroller to log energy per step, step count and calories burned (like my MVP) and create a small display on the calf mount showing instantaneous power.</li>
+<video src="./07_outputs/all.mp4" width="300" height="440" controls></video>
+<p style="font-size: 0.9em; color: #555; margin-top: 4px;">my MVP</p>
+</ul>
+
+    </section>
+<hr>
+    <!-- Appendix -->
+    <section id="appendix" class="mb-5">
+      <h4>Appendix — part names, print settings, logs</h4>
+      <h5>Example file & part list</h5>
+      <ul>
+        <li><code>pulley_17T.stl</code>, <code>pulley_100T.stl</code>, <code>calf_mount.stl</code>, <code>plate_front.dxf</code>, <code>plate_back.dxf</code></li>
+      </ul>
+
+      <h5>Recommended print profile </h5>
+      <table class="table table-sm table-bordered">
+        <thead class="table-light"><tr><th>Setting</th><th>Value</th></tr></thead>
+        <tbody>
+          >
+          <tr><td>Infill</td><td>20–30%</td></tr>
+          <tr><td>Supports</td><td>As required for pulleys/calf mount overhangs</td></tr>
+          <tr><td>Material</td><td>PLA </td></tr>
+        </tbody>
+      </table>
+<hr>
+    
+      </ol>
+    </section>
+<hr>
+    <!-- Closing summary -->
+    <section class="mb-5">
+      <h4>Summary</h4>
+      <h4>
+        This documentation captures the full path from concept to working demo: laser cut chassis, 3D printed pulleys and calf mount, pulley tuning (~5.88:1 ratio),
+        dual bridge rectifier smoothing, and practical wiring & testing. The prototype is a strong demonstration unit (LEDs light very well) and shows the promise of
+        human motion energy harvesting, and also the real limitations suchy as intermittent voltage, converter input requirements, mechanical fastening issues.
+      </h4>
+      
+    </section>
+
+    <!-- Footer small -->
+   
   </div>
 </body>
 
