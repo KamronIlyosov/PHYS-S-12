@@ -50,19 +50,19 @@
 
     <!-- Header -->
     <header class="mb-4">
-      <h1>Final Project Documentation</h1>
-      <h3 class="text-muted">Electricity Generating Leg Brace: thorough build log, Materials, wiring notes, testing templates</h3>
+      <h1>Final Project Documentation:</h1>
+      <h2>Electricity Generating Leg Brace</h2>
     </header>
 
     <!-- Executive summary (short) -->
     <section id="executive-summary" class="mb-4">
       <h4>Executive summary</h4>
-      <p>
+      <h5>
         My final project is a wearable walking device that harvests mechanical energy from leg motion and converts it to electrical energy. I built it using a stepper motor as generator, two full-bridge rectifiers,
-        smoothing capacitors, a pulley reduction system (≈<strong>5.8:1</strong> — approx <strong>6:1</strong>), and a 3D-printed calf-mount combined with
+        smoothing capacitors, a pulley reduction system (≈<strong>5.8:1</strong> §), and a 3D-printed calf-mount combined with
         laser-cut acrylic plates. The core idea is to create a robust, repeatable prototype that demonstrates human motion energy harvesting and points toward
         future, more efficient energy-harvesting & storage systems (buck-boost, supercaps, battery + charger).
-      </p>
+      </h5>
       <img src="onleg.jpg" alt="Image" width="500" height="450">
 
       <img src="walking.jpg" alt="Image" width="500" height="450">
@@ -81,9 +81,9 @@
         <li><a href="#materials">Materials & BOM</a></li>
         <li><a href="#tools">Tools & Machine Settings</a></li>
         <li><a href="#design-files">Design files & CAD notes</a></li>
-        <li><a href="#fabrication">Fabrication steps (very detailed)</a></li>
+        <li><a href="#fabrication">Fabrication steps</a></li>
         <li><a href="#wiring">Wiring & circuit documentation</a></li>
-        <li><a href="#testing">Testing & measurements (templates)</a></li>
+        <li><a href="#testing">Testing & measurements </a></li>
         <li><a href="#assembly-finish">Final assembly, finishing & comfort</a></li>
         <li><a href="#safety">Safety notes</a></li>
         <li><a href="#lessons">Lessons learned & improvements</a></li>
@@ -94,15 +94,18 @@
     </section>
 
     <!-- Demo placeholder -->
-    <section id="demo" class="mb-4">
-      <h4>Demo (video) placeholder</h4>
-      <div class="ratio ratio-16x9">
-        <div class="placeholder">
-          <strong>Demo video</strong>
-          <div class="small-muted mt-2">Replace with your recorded demo (e.g., <code>demo.mp4</code>) or an embedded YouTube link.</div>
-        </div>
-      </div>
-    </section>
+   <section id="demo" class="mb-4" style="max-width: 90%; margin: auto;">
+  <h4>Demo (video)</h4>
+  <div class="ratio ratio-16x9">
+    <iframe src="https://www.youtube.com/embed/YB8k61s_oTE?si=zN8wiX6mLAy6wjWe" 
+      title="YouTube video player" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+
 
     <!-- Materials & BOM -->
     <section id="materials" class="mb-4">
@@ -510,7 +513,7 @@ Motor coil B (2 wires)  ----> Full bridge rectifier B  ----> +DC (smoothing cap 
       <table class="table table-sm table-bordered">
         <thead class="table-light"><tr><th>Setting</th><th>Value</th></tr></thead>
         <tbody>
-          >
+          
           <tr><td>Infill</td><td>20–30%</td></tr>
           <tr><td>Supports</td><td>As required for pulleys/calf mount overhangs</td></tr>
           <tr><td>Material</td><td>PLA </td></tr>
