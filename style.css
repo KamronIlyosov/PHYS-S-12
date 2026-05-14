@@ -610,7 +610,7 @@ hr {
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: var(--surface);
-  margin: 14px 0;
+  margin: 14px auto;
   display: block;
 }
 
