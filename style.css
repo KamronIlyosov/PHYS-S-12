@@ -645,6 +645,17 @@ hr {
   align-items: start;
 }
 
+/* Exactly 4 children → 2x2 grid so no item ends up orphaned on its own row */
+.media-row:has(> :nth-child(4)):not(:has(> :nth-child(5))) {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 620px) {
+  .media-row:has(> :nth-child(4)):not(:has(> :nth-child(5))) {
+    grid-template-columns: 1fr;
+  }
+}
+
 .media-row img,
 .media-row video {
   width: 100%;
