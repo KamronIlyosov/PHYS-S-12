@@ -24,15 +24,14 @@
     <p class="page-eyebrow">Week 05 · 3D Design</p>
     <h1>3D Design and Printing</h1>
     <p class="page-sub">
-      I decided to design and 3D print a prototype part of my final project, and assembled it
-      with a DC motor, gearbox, a metal rod, and a breadboard. I also added LED lights that
-      glow when power is produced, to help demonstrate how my final project will work.
+      The first physical version of the final project, a 3D printed thigh mount holding a DC motor
+      and gearbox, with LEDs that light up when I turn the rod by hand.
     </p>
 
     <hr>
 
     <div class="media-row">
-      <img src="./final.jpg" alt="Final prototype">
+      <img src="./final.jpg" alt="Assembled prototype">
       <video controls>
         <source src="./work.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -41,24 +40,29 @@
 
     <hr>
 
-    <h2>Step by step</h2>
-
-    <h3>Step 1: Designing the thigh mount</h3>
-    <p>For the first step, I designed the main component of my final project, which would be the part that straps onto your outer thigh.</p>
+    <h2>Step 1: Designing the thigh mount</h2>
+    <p>
+      The plan was to take the leg charger idea from Week 1 and build the first piece of it, the
+      part that straps to your outer thigh and holds the motor. I designed the mount in Fusion 360
+      with a flat surface for the motor to bolt onto, side walls to keep the motor from twisting,
+      and 2 slots cut into the back for a strap to pass through. Nothing fancy, but it had to be
+      strong enough to handle the torque the motor would put on it when the rod spins.
+    </p>
     <div class="media-row">
       <img src="./Prototype.jpg" alt="Prototype CAD">
       <img src="./Topproto.jpg" alt="Prototype top view">
     </div>
-    <p><a download href="./proto.f3d">Download 3D File</a></p>
+    <p><a download href="./proto.f3d">Download Fusion file</a></p>
 
     <hr>
 
-    <h3>Step 2: Slicing and printing</h3>
+    <h2>Step 2: Slicing and printing</h2>
     <p>
-      For the second step, I imported my design into PrusaSlicer, but had a slight issue: my
-      component was too large to 3D print, so I scaled it down to 56%. Luckily this didn't affect
-      the final product since it was just a prototype, for the next step I exported it into an SD
-      card. This allowed me to simply put the SD card into the 3D printer and start the print.
+      I imported the STL into PrusaSlicer and ran into a problem right away, my part was a bit too
+      large for the print bed, so I scaled it down to 56% of full size. That's fine for a prototype
+      because all I really wanted out of this print was to test the geometry and the fit with the
+      motor. After scaling I set the infill, generated supports for the overhangs, exported the
+      gcode to an SD card, and started the print on the lab's printer.
     </p>
     <div class="media-row">
       <img src="./full.jpg" alt="Full print">
@@ -71,46 +75,59 @@
 
     <hr>
 
-    <h3>Step 3: Motor mount and rod</h3>
+    <h2>Step 3: Motor mount and rod</h2>
     <p>
-      Next, I mounted a DC motor and gearbox to my 3D printed part seamlessly and had to figure
-      out how to secure a rod onto the motor shaft, which would be mounted onto your calf in the
-      final project. To do this I drilled out a hole with the same diameter as the motor shaft,
-      and threaded out the rod so I could screw on an M6 bolt to grip onto the motor shaft going
-      through the hole I drilled out.
+      Once the part was printed I mounted the DC motor and the small gearbox to the front face,
+      using the bolt holes I'd designed in. The tricky part was the rod, this is the piece that
+      goes onto the motor shaft and ends up attached to the calf in the final version. I needed
+      the rod to grip onto the shaft tightly so it wouldn't slip when the leg bends, so I drilled
+      out a hole at one end of the rod sized exactly to the motor shaft diameter, then drilled a
+      perpendicular hole through the side and tapped it for an M6 bolt. The bolt threads in from
+      the side and clamps the rod down onto the motor shaft, which is a basic set screw style
+      attachment and it doesn't slip.
     </p>
     <div class="media-row">
-      <img src="./thread.jpg" alt="Threading">
-      <img src="./Hole.jpg" alt="Hole mount">
-      <img src="./mounted.jpg" alt="Mounted">
+      <img src="./thread.jpg" alt="Threading the rod">
+      <img src="./Hole.jpg" alt="Hole drilled for motor shaft">
+      <img src="./mounted.jpg" alt="Rod mounted on motor">
     </div>
 
     <hr>
 
-    <h3>Step 4: Laser-cut platform and LEDs</h3>
+    <h2>Step 4: Laser cut platform and LEDs</h2>
     <p>
-      Once my prototype was assembled, I decided to laser cut a platform with a hole that matches
-      the motors diameter in order to mount the prototype on and make it look more put together.
-      I also used a adhesive tape to attach a breadboard beside the prototype which is where I
-      connected the LED lights.
+      After the rod was mounted I needed a way to display the whole thing for the assignment, so I
+      laser cut a flat wood platform with a clearance hole that matches the motor's outer
+      diameter. The mount drops into the hole and sits flush on the platform. I taped a small
+      breadboard next to it and wired a pair of LEDs to the motor leads, so when I spin the rod by
+      hand and the motor acts as a generator, the LEDs flicker on.
     </p>
     <div class="media-row">
       <img src="./before.jpg" alt="Before assembly">
-      <img src="./final.jpg" alt="Final assembly">
+      <img src="./final.jpg" alt="Final assembled prototype">
     </div>
+    <p>
+      The LEDs only flash, they don't stay lit steadily, because when you spin a DC motor back and
+      forth the polarity of its output flips every time the direction changes. So one LED lights up
+      when I spin one way and the other LED lights up when I spin the other way. That's the
+      problem I solve in Week 7 with a bridge rectifier, but for now the back and forth flashing
+      is enough to prove the concept.
+    </p>
 
     <hr>
 
     <h2>Assignment Part 2: Photogrammetry</h2>
     <p>
-      After finishing my final project prototype, I scanned my favorite shoes using a
-      photogrammetry application on Iphone called "Polycam", I chose the object scan option and
-      scanned my object with two full rotations. This allowed me to process the scan within the
-      app and download my 3D scan, however it required me to pay to download as STL or OBJ, so I
-      downloaded the video version of my scan.
+      The second part of the assignment was scanning a real object. I scanned my favorite shoes
+      using Polycam on iPhone, which is a photogrammetry app that builds a 3D mesh from a bunch of
+      photos taken from different angles. I picked the object scan mode and did 2 full rotations
+      around the shoe, slow enough that the app could keep track of features between frames. After
+      it processed I could orbit the model in the app and it looked great, but Polycam puts STL and
+      OBJ export behind a paywall, so the best I could do for free was record a screen video of the
+      finished scan rotating.
     </p>
     <div class="media-row">
-      <img src="./shoe.jpg" alt="Shoe scan">
+      <img src="./shoe.jpg" alt="Shoe being scanned">
       <video controls>
         <source src="./scan.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -121,17 +138,17 @@
 
     <h2>Assignment Part 3: Final Project Plan</h2>
 
-    <h3>Project Goals</h3>
+    <h3>Project goals</h3>
     <ul>
       <li>Generate electricity from walking using a wearable device</li>
-      <li>Promote sustainable, human-powered energy solutions</li>
-      <li>Design a lightweight, functional, and comfortable system</li>
-      <li>Create a working prototype capable of charging a small device (e.g., phone, flashlight)</li>
+      <li>Promote sustainable, human powered energy solutions</li>
+      <li>Keep the design light enough and comfortable enough that the user would actually wear it</li>
+      <li>Get a working prototype that can charge a small device (phone, flashlight, etc.)</li>
     </ul>
 
-    <h3>Bill of Materials</h3>
+    <h3>Bill of materials</h3>
     <table>
-      <tr><th>Item</th><th>Quantity</th><th>Cost (Estimate)</th></tr>
+      <tr><th>Item</th><th>Quantity</th><th>Cost (estimate)</th></tr>
       <tr><td>DC Motor (6V–12V)</td><td>1</td><td>$8</td></tr>
       <tr><td>Voltage Regulator</td><td>1</td><td>$3</td></tr>
       <tr><td>Rechargeable Battery (Li-ion)</td><td>1</td><td>$20</td></tr>
@@ -141,16 +158,28 @@
       <tr><td>Enclosure (optional)</td><td>1</td><td>3D printer (Free)</td></tr>
       <tr><td>Multimeter (for testing)</td><td>1</td><td>Already owned</td></tr>
     </table>
-    <p><strong>Total Estimated Cost: ~$56</strong></p>
+    <p><strong>Total estimated cost: ~$56</strong></p>
 
-    <h3>4-Week Timeline</h3>
+    <h3>4-week timeline</h3>
     <table>
       <tr><th>Week</th><th>Tasks</th></tr>
-      <tr><td>Week 1</td><td>Research techniques to create the most amount of energy efficiently. Finalize design sketch. Order all parts. Test DC motor manually to understand output.</td></tr>
+      <tr><td>Week 1</td><td>Research techniques to generate the most amount of energy efficiently. Finalize design sketch. Order all parts. Test the DC motor manually to understand output range.</td></tr>
       <tr><td>Week 2</td><td>Build and test the pulley and motor system. Mount to leg brace and test movement to electricity conversion.</td></tr>
       <tr><td>Week 3</td><td>Connect voltage regulator and battery. Run walking tests to measure charging capacity. Make mechanical and electrical adjustments.</td></tr>
       <tr><td>Week 4</td><td>Finalize design. Improve comfort and efficiency. Record results. Update website with documentation, photos, and demo video.</td></tr>
     </table>
+
+    <hr>
+
+    <h2>What I learned</h2>
+    <p>
+      The biggest thing this week was getting comfortable with the workflow of Fusion → STL →
+      slicer → gcode → print → assemble. It sounds simple, but every step has its own gotchas (bad
+      orientation, missing supports, scaling issues), and you don't really learn them until you've
+      printed a part that fails. The flashing LEDs at the end were the first real evidence that the
+      energy harvesting idea would work, which gave me more confidence going into Week 7 where I
+      actually started solving the electrical problems.
+    </p>
   </main>
 
   <footer class="foot">

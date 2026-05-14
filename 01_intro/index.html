@@ -23,44 +23,78 @@
     <a href="../index.html#work" class="page-back">← Back to work</a>
     <p class="page-eyebrow">Week 01 · Intro</p>
     <h1>Final Project Proposal</h1>
-    <p class="page-sub">Here are at most 3 ideas for my final project.</p>
+    <p class="page-sub">Three ideas I was considering for my final, before I picked one.</p>
 
     <hr>
 
     <h2>Idea 1: Mini Drone</h2>
     <p>
-      This mini drone will involve designing a lightweight quadcopter and a radio transmitter,
-      fabricated using 3d printers, laser cut and CNC cut parts. It will be powered with a LiPo
-      battery and feature basic stabilization and may include add ons such as a small camera and
-      LED lights. The main goal is to create a compact drone capable of taking flight. This
-      project will demonstrate skills in electronics, digital fabrication and coding.
+      I've built FPV drones before so I already know what goes into flying one, but this version
+      would be different because I'd be designing the whole frame and the radio transmitter from
+      scratch instead of just bolting together off the shelf parts. The plan is a small quadcopter
+      with a 3D printed frame, some laser cut or CNC cut structural parts where the frame needs to
+      be stiffer, 4 brushless motors, and a LiPo battery doing the heavy lifting. Stabilization
+      would come from a flight controller running basic PID off an IMU, nothing fancy.
     </p>
-    <img src="./drone.jpg" alt="Mini Drone" style="max-width: 480px;">
+    <p>
+      If I had time at the end I'd add a small FPV camera and a couple of LEDs on the arms so I can
+      tell which way is forward in the dark. The hard part isn't really the flying, it's getting
+      the all up weight low enough that the battery can actually keep it airborne for more than 30
+      seconds. This one would hit electronics, digital fabrication, and a decent amount of code,
+      which is why it was attractive as a final project.
+    </p>
+    <img src="./drone.jpg" alt="Mini drone concept">
 
     <hr>
 
-    <h2>Idea 2: Charging Device Powered By Walking</h2>
+    <h2>Idea 2: Charging Device Powered by Walking</h2>
     <p>
-      This charging device will be powered by simply walking, it will be strapped to your leg
-      with a comfortable brace and as you bend your knee while walking, it will turn a pulley
-      system which spins a DC motor, generating electricity. This electricity will go through a
-      voltage regulator and is then stored in any small battery or a small device of your choice!
-      The goal of this project its to make eco-friendly electricity using daily movements such as
-      walking.
+      This is the one I'm most into because it lines up with the eco-friendly side of things I
+      actually care about. The device straps to your leg with a brace, and every time you bend your
+      knee while walking the brace turns a pulley that spins a small DC motor. Motors and
+      generators are the same machine running in reverse, so spinning the shaft produces a voltage
+      on the terminals, and from there the AC the motor generates gets sent through a rectifier to
+      flatten it into DC, then a voltage regulator brings it to a usable level, and finally it gets
+      stored in a small battery or fed straight into whatever the user plugs in.
     </p>
-    <img src="./exo-knee-featured.jpg" alt="Knee brace concept" style="max-width: 480px;">
+    <p>
+      The biggest engineering question is the gear ratio. A walking pace bends the knee maybe 1 or
+      2 times per second, but most small DC motors need hundreds or thousands of RPM to make a
+      meaningful voltage, so there'd need to be a multi stage pulley reduction or some other way to
+      crank up the rotational speed. The end goal is to make usable electricity out of movement
+      that's already happening anyway, with no extra effort from the person wearing it.
+    </p>
+    <img src="./exo-knee-featured.jpg" alt="Knee brace concept">
 
     <hr>
 
-    <h2>Idea 3: Walking Device For The Blind</h2>
+    <h2>Idea 3: Walking Device for the Blind</h2>
     <p>
-      This project will be a compact head strap with integrated sensors and speakers, which will
-      warn the blind when they are in the proximity of an obstacle, allowing them to walk safely
-      and confidently. This will be fabricated using a 3D printer and cut parts, along with a
-      comfortable strap for daily use. The goal of this project is to help the blind and let them
-      walk safely and avoid obstacles.
+      This one came from thinking about what would actually be useful for somebody who can't see. A
+      compact head strap, basically a thin headband, with an ultrasonic distance sensor pointing
+      forward and a small speaker that plays a tone that gets faster (or louder) as the user gets
+      closer to an obstacle. So someone walking down the sidewalk gets audio feedback when they're
+      about to bump into something a cane wouldn't catch, like a low tree branch or an open cabinet
+      door.
     </p>
-    <img src="./headstrap2.jpg" alt="Head strap concept" style="max-width: 480px;">
+    <p>
+      The strap and housing would be 3D printed, with the electronics being a microcontroller, the
+      distance sensor, a small speaker, and a battery. The fabric strap part has to be soft and
+      adjustable for daily use, because if it's uncomfortable nobody will actually wear it. The
+      point is to give blind users an extra layer of awareness on top of what they already use,
+      not to replace anything.
+    </p>
+    <img src="./headstrap2.jpg" alt="Head strap concept">
+
+    <hr>
+
+    <h2>Where I ended up</h2>
+    <p>
+      I went with the leg charger. The drone was tempting but I've already built that kind of thing
+      so it felt like a side step, and the headset for the blind would need real user testing to be
+      worth doing properly, which is outside the scope of a few weeks. The energy harvesting brace
+      is the one I'd never built before and the one I keep thinking about, so it won.
+    </p>
   </main>
 
   <footer class="foot">

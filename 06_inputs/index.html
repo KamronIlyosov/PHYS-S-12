@@ -23,29 +23,34 @@
     <a href="../index.html#work" class="page-back">← Back to work</a>
     <p class="page-eyebrow">Week 06 · Inputs</p>
     <h1>Sensors: Pressure and Light</h1>
-    <p class="page-sub">Two builds: a foam-and-copper capacitive pressure sensor, and a light sensor that flips an LED based on lux.</p>
+    <p class="page-sub">Two builds, a foam and copper capacitive pressure sensor, and a light sensor that switches an LED based on how dark the room is.</p>
 
     <hr>
 
-    <h2>Assignment 1: Capacitive Sensor with Foam and Copper</h2>
+    <h2>Assignment 1: Capacitive Pressure Sensor</h2>
     <p>
-      For this project, I built a basic capacitive pressure sensor using a block of foam and two
-      copper sheets. When weight is applied, the foam compresses slightly, changing the
-      capacitance between the copper plates. The sensor is connected to the XIAO microcontroller
-      and outputs values based on how much pressure is applied.
+      The idea here is that a capacitor's behavior changes with the distance between its plates,
+      so if I put a soft material between 2 conductive plates and then squish them together with
+      weight on top, the capacitance changes in a measurable way. I built mine with 2 small copper
+      sheets sandwiching a piece of soft foam. The microcontroller charges one plate through a TX
+      pin, then reads the analog voltage at the other plate. The reading depends on how much
+      charge transferred across the gap, which depends on the capacitance, which depends on the
+      foam thickness, which depends on how much weight is on top. So pressing harder gives a higher
+      number.
     </p>
 
     <hr>
 
     <h3>Step 1: Building the sensor</h3>
     <p>
-      I placed a block of soft foam between two small copper sheets. One sheet was connected to
-      pin D0 (analog), and the other to D3 (as the TX pin). When weight is added on top, the
-      foam compresses, changing the capacitance and giving different readings.
+      The build is simple, 2 copper sheets with a foam pad between them, wires soldered to each
+      copper sheet. One sheet goes to pin D0 (analog read), the other to D3 (the TX pin that pulses
+      high and low). When weight pushes down on the foam the foam compresses, the plates get
+      closer, the capacitance increases, and the reading goes up.
     </p>
     <ul>
-      <li>Top copper sheet — D0</li>
-      <li>Bottom copper sheet — D3</li>
+      <li>Top copper sheet — D0 (analog read)</li>
+      <li>Bottom copper sheet — D3 (TX pulse)</li>
     </ul>
     <div class="media-row">
       <img src="./sensor3d.jpg" alt="Sensor 3D view">
@@ -55,11 +60,12 @@
 
     <hr>
 
-    <h3>Step 2: Initial code</h3>
+    <h3>Step 2: Initial code (uncalibrated)</h3>
     <p>
-      This is the uncalibrated code which I got from the S-12 website, it reads the difference
-      between the high and low analog values caused by charging/discharging through the copper
-      sheets. The raw result changes depending on pressure.
+      This is the starting code I pulled from the S-12 site. It pulses the TX pin high and low
+      100 times in a row, reading the analog pin at each transition, and adds up the differences.
+      The total at the end is the raw sensor value. It doesn't mean anything in real units yet,
+      it's just a number that goes up when you press harder.
     </p>
 <pre>long result;
 int analog_pin = A3;
@@ -95,9 +101,12 @@ long tx_rx() {
     <hr>
 
     <h3>Step 3: Calibration</h3>
-    <p>To calibrate, I placed weights on the sensor and recorded the readings:</p>
+    <p>
+      To turn the raw number into grams I needed a calibration curve, so I put known weights on the
+      sensor one at a time and recorded what the sensor reported. Here is what I got:
+    </p>
     <table>
-      <tr><th>Weight (g)</th><th>Sensor Value</th></tr>
+      <tr><th>Weight (g)</th><th>Sensor value</th></tr>
       <tr><td>0g</td><td>60,000</td></tr>
       <tr><td>20g</td><td>72,000</td></tr>
       <tr><td>60g</td><td>85,000</td></tr>
@@ -108,15 +117,20 @@ long tx_rx() {
       <tr><td>500g</td><td>110,000</td></tr>
       <tr><td>800g</td><td>126,000</td></tr>
     </table>
-    <p>Then I used a simple function to estimate weight based on the sensor value, this gave rough weight results.</p>
+    <p>
+      The relationship between weight and sensor value isn't perfectly linear (foam doesn't
+      compress the same amount per gram once it's already squished), but across the 0g to 500g
+      range it's close enough that a straight line works as a rough estimator.
+    </p>
 
     <hr>
 
     <h3>Step 4: Updated code with weight estimation</h3>
     <p>
-      I added a function to convert the sensor reading into grams using a linear range from 60k
-      to 140k, at first I mapped it to 0g-1000g, but the weight readings were overestimated and
-      inaccurate. After testing I mapped it to 0g to 500g, which showed greater accuracy.
+      I added a function that takes the raw reading and maps it to a weight in grams using the
+      Arduino map() function. My first attempt mapped 60,000 to 140,000 → 0g to 1000g, but the
+      values came out way too high (a 100g object was reading like 600g). So I tightened the range
+      to 0g to 500g and got readings that were a lot closer to true weight.
     </p>
 <pre>long result;
 int analog_pin = A3;
@@ -161,15 +175,15 @@ long tx_rx() {
 
     <hr>
 
-    <h3>Testing</h3>
+    <h3>Testing on a real object</h3>
     <p>
-      To test my sensor, I measured the weight of airpods on an actual scale, which got me 50g,
-      then I used my capacitive sensor to measure the weight of the airpods and got about 55g,
-      which is closely accurate for a handmade sensor. This showed the sensor was working and
-      responding to changes in force.
+      To check the accuracy, I weighed my AirPods on an actual digital scale and got 50g, then put
+      them on the sensor and read about 55g. 5g off across a 50g object is roughly 10% error, which
+      is good enough for a handmade capacitive sensor and it proves the sensor is responding to
+      real weight, not just noise.
     </p>
     <div class="media-row">
-      <img src="./sensor%20scale.jpg" alt="Sensor on scale">
+      <img src="./sensor%20scale.jpg" alt="Sensor on real scale">
       <img src="./podweight.jpg" alt="Airpod weight reading">
     </div>
 
@@ -177,9 +191,11 @@ long tx_rx() {
 
     <h2>Assignment 2: Light Sensor with LED Control</h2>
     <p>
-      This project uses a light sensor and an LED controlled by a XIAO microcontroller. The
-      sensor measures light, converts it to lux, and turns the LED on in darkness, and off in
-      light.
+      Second build was simpler, a photoresistor (its resistance drops as light increases) hooked up
+      to an analog pin, and an LED on a digital pin. The microcontroller reads the analog value
+      every 100ms, estimates how bright the room is in lux, and turns the LED on if the room is
+      below a threshold. So if you walk into a dark room the LED lights up automatically, and when
+      you turn the room lights back on the LED turns off.
     </p>
 
     <hr>
@@ -192,21 +208,26 @@ long tx_rx() {
 
     <hr>
 
-    <h3>Step 1: Wiring the circuit</h3>
-    <p>I connected the light sensor to analog pin A0 (D0) and the LED to pin D10 with a 1k resistor.</p>
+    <h3>Step 1: Wiring</h3>
+    <p>
+      The photoresistor sits in a voltage divider with a 10k resistor, with the midpoint going to
+      analog pin A0. The LED is on pin D10 through a 1k current limiting resistor. Power and ground
+      go to 3.3V and GND like everything else.
+    </p>
     <ul>
-      <li>Light Sensor — A0 (D0)</li>
+      <li>Light sensor — A0 (D0)</li>
       <li>LED — D10</li>
-      <li>Power and GND wires connected accordingly</li>
+      <li>Power and GND wired in the usual way</li>
     </ul>
     <img src="./wiring.jpg" alt="Light sensor wiring">
 
     <hr>
 
-    <h3>Step 2: Writing the code</h3>
+    <h3>Step 2: The code</h3>
     <p>
-      The code below reads analog values from the light sensor every 100ms, estimates the lux
-      value, and turns the LED on if the light level is below the threshold.
+      Same trick as Week 4, I'm using millis() instead of delay() so the loop stays responsive.
+      Every 100ms it reads the analog pin, converts the raw value to a rough lux estimate, and
+      compares against a threshold of 100 lux. Below 100 the LED turns on, above 100 it turns off.
     </p>
 <pre>const int sensorPin = D0;
 const int ledPin = D10;
@@ -249,40 +270,34 @@ float estimateLux(int analogVal) {
     <hr>
 
     <h3>Step 3: Calibrating the sensor</h3>
-    <p>To convert analog values to approximate lux values, I used the following method:</p>
-    <ol>
-      <li>Measured the analog reading under different lighting conditions</li>
-      <li>Recorded approximate lux values using known references</li>
-      <li>Mapped the readings using a linear function after inverting the sensor value</li>
-    </ol>
-
-    <p>Example measurements:</p>
+    <p>
+      The photoresistor's raw value is between 0 and 4095, and bigger values actually mean less
+      light (because more resistance = lower voltage at the divider midpoint, which the ADC reads
+      as a smaller number… and I'm inverting it in the code so up is brighter). To turn that into a
+      lux estimate I measured the sensor under a few known lighting conditions:
+    </p>
     <table>
-      <tr><th>Condition</th><th>Analog Value</th><th>Approx. Lux</th></tr>
-      <tr><td>Direct flashlight</td><td>300</td><td>-900</td></tr>
-      <tr><td>Room light</td><td>1200</td><td>-154</td></tr>
-      <tr><td>Shadow</td><td>2500</td><td>-70</td></tr>
+      <tr><th>Condition</th><th>Analog value</th><th>Approx. Lux</th></tr>
+      <tr><td>Direct flashlight</td><td>300</td><td>~900</td></tr>
+      <tr><td>Room light</td><td>1200</td><td>~154</td></tr>
+      <tr><td>Shadow</td><td>2500</td><td>~70</td></tr>
       <tr><td>Dark room</td><td>3500+</td><td>&lt;10</td></tr>
     </table>
-
-    <p>
-      To estimate lux, I tested the sensor under different lighting and recorded the analog
-      readings. Then I inverted the values and mapped them to a 0–1000 lux range using a simple
-      linear function:
-    </p>
+    <p>Then I inverted the value and mapped it into a 0–1000 lux range with the same map() approach:</p>
 <pre>int inverted = 4095 - analogVal;
 float lux = map(inverted, 0, 4095, 0, 1000);</pre>
-
-    <p>This gives a rough lux value where 0 = dark and 1000 = bright.</p>
-
+    <p>
+      The result isn't calibrated against an actual lux meter, but it gives a usable number where
+      0 = pitch dark and 1000 = bright daylight, which is all I needed for the on/off threshold.
+    </p>
     <div class="media-row">
       <figure style="margin: 0;">
         <img src="./room.jpg" alt="Lux in room light">
-        <p class="caption">Lux in Room Light</p>
+        <p class="caption">Lux in room light</p>
       </figure>
       <figure style="margin: 0;">
         <img src="./light.jpg" alt="Lux under flashlight">
-        <p class="caption">Lux Under Flashlight</p>
+        <p class="caption">Lux under flashlight</p>
       </figure>
     </div>
 
@@ -290,13 +305,27 @@ float lux = map(inverted, 0, 4095, 0, 1000);</pre>
 
     <h3>Step 4: Testing the LED</h3>
     <p>
-      When the room was dark, the LED turned on as expected. When light was on, it turned off.
-      This matched the lux threshold set in my code.
+      Final test, cover the sensor with my hand and the LED switches on, uncover it and the LED
+      switches off. The threshold of 100 lux is right around the level of a dim room, so a desk
+      lamp on across the room keeps the LED off but turning all the lights off triggers it within
+      a few hundred milliseconds.
     </p>
     <div class="media-row">
       <img src="./on.jpg" alt="LED on in darkness">
       <img src="./off.jpg" alt="LED off in light">
     </div>
+
+    <hr>
+
+    <h2>What I took away</h2>
+    <p>
+      Both of these are basically the same idea, take a real world signal (pressure, light), turn
+      it into an analog voltage, read it on the microcontroller, and use a threshold to decide
+      what to do. The pressure sensor is more interesting because I had to build the sensor itself
+      from foam and copper, and calibrate it against known weights. That same calibration approach
+      shows up in Week 7 when I use a Hall sensor to detect steps, so getting comfortable with the
+      idea here saved me time later.
+    </p>
   </main>
 
   <footer class="foot">

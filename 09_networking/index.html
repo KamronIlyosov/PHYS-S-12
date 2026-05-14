@@ -23,7 +23,7 @@
     <a href="../index.html#work" class="page-back">← Back to work</a>
     <p class="page-eyebrow">Week 09 · Networking</p>
     <h1>Radio, WiFi, Bluetooth (IoT)</h1>
-    <p class="page-sub">Siri-controlled LEDs with the Xiao ESP32C3.</p>
+    <p class="page-sub">Siri controlled LEDs running on a XIAO ESP32-C3.</p>
 
     <div class="media-row">
       <video controls>
@@ -35,44 +35,63 @@
 
     <hr>
 
-    <h2>Step 1: Gather Materials</h2>
-    <p>The following materials were used for the project:</p>
-    <ul>
-      <li>Xiao ESP32C3 microcontroller</li>
-      <li>USB-C cable</li>
-      <li>Breadboard</li>
-      <li>22 LED's (any color)</li>
-      <li>330-ohm resistor</li>
-      <li>Three Pin To Pin wires</li>
-      <li>iPhone with the Shortcuts app installed</li>
-    </ul>
-    <img src="./mats.jpg" alt="Materials">
-
-    <hr>
-
-    <h2>Step 2: Wire the Circuit</h2>
-    <p>The LED circuit was connected as follows:</p>
-    <ul>
-      <li>One wire connected the longer legs of the LED's to digital pin D2 on the Xiao ESP32C3.</li>
-      <li>The shorter legs of the LED's were connected to the GND pin on the Xiao.</li>
-    </ul>
-    <img src="./circuits.jpg" alt="My circuit">
-
-    <hr>
-
-    <h2>Step 3: Program the Xiao ESP32-C3 (Wi-Fi Version)</h2>
+    <h2>What this is</h2>
     <p>
-      The Xiao ESP32-C3 was programmed using the Arduino IDE to connect to a Wi-Fi network and
-      host a simple HTTP server. The server listens for <code>/on</code> and <code>/off</code>
-      commands, which turn the LED on or off remotely.
+      The point of the assignment was to get a microcontroller talking over a network, and the
+      most satisfying version of that for me was being able to turn LEDs on and off with my voice
+      through Siri. The chain works like this, my phone takes the voice command "Turn the lights
+      on" and runs a Shortcut, the Shortcut sends an HTTP GET request to the IP of my XIAO
+      ESP32-C3 on the local network, the ESP32 receives the request and flips a digital pin which
+      drives the LEDs. So a sentence at one end ends up as electrons moving through an LED on the
+      other.
+    </p>
+
+    <hr>
+
+    <h2>Step 1: Materials</h2>
+    <ul>
+      <li>XIAO ESP32-C3 microcontroller</li>
+      <li>USB-C cable for programming and power</li>
+      <li>Breadboard</li>
+      <li>22 LEDs of any color (they all wire in parallel)</li>
+      <li>1 × 330Ω resistor</li>
+      <li>3 pin to pin jumper wires</li>
+      <li>iPhone with the Shortcuts app installed (any modern iPhone has this preinstalled)</li>
+    </ul>
+    <img src="./mats.jpg" alt="Materials laid out">
+
+    <hr>
+
+    <h2>Step 2: Wiring the circuit</h2>
+    <p>
+      The wiring is as simple as it gets. All 22 LEDs are on the breadboard in parallel, with their
+      long legs (anodes) connected together and tied to digital pin D2 on the ESP32, and their
+      short legs (cathodes) all tied to the GND pin on the ESP32. The 330Ω resistor goes in series
+      with the LEDs to keep the current safe.
+    </p>
+    <ul>
+      <li>LED anodes (together) → D2 on the ESP32</li>
+      <li>LED cathodes (together) → GND on the ESP32</li>
+    </ul>
+    <img src="./circuits.jpg" alt="LED circuit">
+
+    <hr>
+
+    <h2>Step 3: Programming the ESP32-C3</h2>
+    <p>
+      The Arduino sketch does 3 things, it connects to the local WiFi, it starts a small HTTP
+      server on port 80, and it registers 2 endpoints, <code>/on</code> turns the LED pin HIGH and
+      <code>/off</code> turns it LOW. Once it's running, any device on the same WiFi network can
+      send the ESP32 a URL and the LEDs will respond. The Serial Monitor prints the IP address the
+      ESP32 was assigned, which I needed to know so I could plug it into the iOS Shortcut later.
     </p>
     <div class="media-row">
-      <img src="./LEDoff.jpg" alt="LED off">
+      <img src="./LEDoff.jpg" alt="LEDs off">
       <img src="./URL.gif" alt="URL request">
-      <img src="./LEDon.jpg" alt="LED on">
+      <img src="./LEDon.jpg" alt="LEDs on">
     </div>
 
-    <h3>My Code</h3>
+    <h3>The code</h3>
 <pre>#include &lt;WiFi.h&gt;
 #include &lt;WebServer.h&gt;
 
@@ -119,64 +138,77 @@ void loop() {
 
     <hr>
 
-    <h2>Step 4: Control with Siri Shortcut</h2>
+    <h2>Step 4: Siri Shortcut</h2>
     <p>
-      Once the Xiao ESP32C3 is connected to Wi-Fi and running the server, it can be controlled
-      from any browser or automation system that can send HTTP requests. To control it with Siri,
-      I used the Shortcuts app on iOS.
+      Once the ESP32 is running its little server, anything that can fire an HTTP request can
+      control the LEDs. I could open Safari and type the URL directly and it would work, but the
+      assignment was about voice, so I made 2 Siri Shortcuts in the iOS Shortcuts app. Each one
+      uses the built in "Get Contents of URL" action, which is just a way of sending an HTTP
+      request without writing code. I gave them voice phrases like "Turn the lights on" and "Turn
+      the lights off" so I could trigger them from Siri or the lock screen.
     </p>
-    <p>Instead of using IFTTT or Homebridge, I created two simple Siri Shortcuts:</p>
     <ul>
-      <li>Turn LED On: Sends a GET request to <code>http://192.168.0.194/on</code></li>
-      <li>Turn LED Off: Sends a GET request to <code>http://192.168.0.194/off</code></li>
+      <li>Turn LED On → GET <code>http://192.168.0.194/on</code></li>
+      <li>Turn LED Off → GET <code>http://192.168.0.194/off</code></li>
     </ul>
-    <p>Each shortcut uses the "Get Contents of URL" action. You can add a voice command like "Turn the lights on" to trigger it with Siri.</p>
     <div class="media-row">
-      <img src="./shortcuts.jpg" alt="Shortcuts overview">
+      <img src="./shortcuts.jpg" alt="Shortcuts list">
       <img src="./geton.jpg" alt="GET request to turn on">
       <img src="./getoff.jpg" alt="GET request to turn off">
     </div>
 
     <hr>
 
-    <h2>Step 5: Testing and Results</h2>
-    <p>To verify that the system was working correctly, I followed these steps:</p>
+    <h2>Step 5: Testing</h2>
+    <p>To make sure everything was working I went through it in order:</p>
     <ol>
-      <li>Connected my microcontroller to WiFi and opened the Serial Monitor to view the assigned IP address.</li>
+      <li>Plugged in the ESP32 and opened the Serial Monitor to read the IP address it got from the WiFi router.</li>
     </ol>
     <div class="media-row">
-      <img src="./IP.jpg" alt="IP address in serial monitor">
-      <img src="./code1.jpg" alt="Arduino code">
+      <img src="./IP.jpg" alt="IP address in Serial Monitor">
+      <img src="./code1.jpg" alt="Arduino code on screen">
     </div>
     <ol start="2">
-      <li>Tested the HTTP endpoints by visiting <code>http://192.168.0.194/on</code> and <code>http://192.168.0.194/off</code> in a web browser. The onboard LED responded immediately.</li>
+      <li>Opened a browser and typed in the URL with /on and /off to confirm the endpoints respond. The LEDs flipped immediately and the page showed "LED is ON" / "LED is OFF" so the server side was working.</li>
     </ol>
     <div class="media-row">
-      <img src="./LEDon.jpg" alt="LED on via URL">
-      <img src="./LEDoff.jpg" alt="LED off via URL">
+      <img src="./LEDon.jpg" alt="LEDs on via URL">
+      <img src="./LEDoff.jpg" alt="LEDs off via URL">
     </div>
     <ol start="3">
-      <li>Next, I ran the Siri Shortcuts using voice commands like "Turn on the lights" and "Turn off the lights". The LED responded correctly in real time.</li>
+      <li>Triggered the Shortcuts with voice ("Hey Siri, turn the lights on" / "Hey Siri, turn the lights off"). The LEDs flipped basically instantly, with maybe a quarter second of latency total from end of sentence to LED state change.</li>
     </ol>
     <video controls>
       <source src="./siri.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
+
+    <hr>
+
+    <h2>Step 6: What I'd do next</h2>
     <p>
-      The system worked reliably on the local network. I confirmed that the response from the
-      ESP32 server showed "LED is ON" or "LED is OFF" as expected. There was minimal latency
-      between issuing the Siri command and the physical LED state change.
+      This setup only works on the local network because the ESP32 is on a private IP, so it's not
+      reachable from outside the house. If I wanted to control the LEDs from anywhere I'd either
+      integrate with Homebridge (which exposes the ESP32 to Apple's HomeKit through a Raspberry Pi
+      or similar) or set up port forwarding through a public service, but for a class project the
+      local network version is more than enough.
+    </p>
+    <p>
+      It would also be straightforward to use this same pattern for non LED stuff, just swap the
+      output to a relay, a motor driver, or anything else. The web server side of the code doesn't
+      care what's on the other end of the digital pin.
     </p>
 
     <hr>
 
-    <h2>Step 6: Reflection and Next Steps</h2>
-    <p>This project demonstrated a simple yet powerful integration between voice control and microcontroller hardware. It shows how IoT systems can be controlled using everyday devices like smartphones.</p>
-    <p>Future improvements could include:</p>
-    <ul>
-      <li>Integrating with Homebridge for full Apple HomeKit compatibility</li>
-      <li>Controlling sensors or actuators beyond LEDs</li>
-    </ul>
+    <h2>What I took away</h2>
+    <p>
+      The big idea this week is that "networking" on a microcontroller isn't all that different
+      from running a tiny web server on a laptop, the ESP32 just has way less RAM. Once I had the
+      pattern down (connect to WiFi, define endpoints, handle clients in the loop), I could see
+      how a hundred different IoT projects would all use basically the same code with different
+      handlers. Siri integration through Shortcuts is mostly a UX trick on top, but it's a fun one.
+    </p>
   </main>
 
   <footer class="foot">

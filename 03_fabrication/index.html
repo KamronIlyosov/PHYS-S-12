@@ -23,13 +23,13 @@
     <a href="../index.html#work" class="page-back">← Back to work</a>
     <p class="page-eyebrow">Week 03 · Fabrication</p>
     <h1>Hand Tools and Fabrication</h1>
-    <p class="page-sub">My kinetic figure is a sculpture with colorful binder clips moving up and down.</p>
+    <p class="page-sub">A small kinetic sculpture, a motor, a wavy cam, and a row of colorful binder clips that go up and down in a wave.</p>
 
     <hr>
 
     <div class="media-row">
-      <img src="./front.jpg" alt="Front view">
-      <img src="./side.jpg" alt="Side view">
+      <img src="./front.jpg" alt="Sculpture front view">
+      <img src="./side.jpg" alt="Sculpture side view">
       <video controls>
         <source src="./demo.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -38,35 +38,70 @@
 
     <hr>
 
-    <h2>Step 1: CAD for the bird figure</h2>
-    <p>(couldn't use this due to classmates dishonesty regarding the line for the laser cutter)</p>
+    <h2>Step 1: The bird CAD that didn't make it</h2>
+    <p>
+      My first plan was a small bird that flapped its wings, so I designed the bird parts in Fusion
+      360 and got them ready to laser cut. I didn't end up using the file because of some
+      classmates' dishonesty regarding the line for the laser cutter, so by the time I would have
+      gotten on the machine I would have lost most of the lab. I switched to the binder clip wave
+      idea instead because it didn't need laser cut parts and I could build it with what was
+      already on my bench.
+    </p>
     <img src="./BirdCAD.png" alt="Bird CAD">
 
     <hr>
 
     <h2>Step 2: Building the platform</h2>
     <p>
-      Then I had to build the platform, I cut thin wood for the base, and added 2 wood pieces
-      which would be supporting the shaft mechanism.
+      The mechanism is a horizontal shaft that the binder clips hang off of, so the platform needed
+      to support that shaft at both ends and hold a small motor on one side that drives it. I cut a
+      thin piece of wood for the base, then cut 2 taller pieces and glued them upright on either
+      side of the base to act as bearings for the shaft. The shaft just rests in notches at the top
+      of those uprights, low friction so the motor doesn't have to work hard to spin it.
     </p>
     <img src="./plywood.jpg" alt="Plywood base">
 
     <hr>
 
-    <h2>Step 3: Wavy cam and circuit</h2>
+    <h2>Step 3: The wavy cam</h2>
     <p>
-      To actually make the colorful clips move, I bent metal wire into an uneven, wavy shape so
-      that when it turns, it pushes the binder clips up and down in a repeating pattern. Next, I
-      had to include circuitry; I connected the ground, power, and analog to the potentiometer,
-      and connected a motor so I can adjust the motor speed.
+      To actually make the clips move up and down I bent a length of metal wire into a wavy shape,
+      so the wire is offset above and below the rotation axis in a repeating pattern. The binder
+      clips sit on top of the wire, and as the shaft spins, the wire pushes each clip up when a peak
+      passes underneath it and lets it drop when a trough passes. Since the peaks are at different
+      angles around the shaft, the clips don't all move together, they go up and down in a wave
+      across the row.
     </p>
-    <img src="./circuit.jpg" alt="Circuit">
+    <p>
+      The motor connects to one end of the shaft with a coupler, and I wired the motor through a
+      potentiometer so I could control how fast the wave moves. The wiring is just ground, power,
+      and the wiper of the potentiometer feeding the motor, with the other 2 pot pins on power and
+      ground. Turning the knob varies the voltage going to the motor, which varies the speed.
+    </p>
+    <img src="./circuit.jpg" alt="Circuit on a breadboard">
 
     <hr>
 
-    <h2>Step 4: Measurements</h2>
-    <p>After measuring the voltage of my circuit, I got 5V and used ohms law to find a current of 300 mA.</p>
+    <h2>Step 4: Measuring the circuit</h2>
+    <p>
+      Once it was running I put a multimeter on the supply to confirm the voltage was 5V like I
+      expected, and from there I used Ohm's law (V = IR) and the rated resistance of the motor to
+      back out a current of about 300 mA. That's well within what the bench supply can deliver, so
+      nothing else needed to change.
+    </p>
     <img src="./volt.jpeg" alt="Multimeter reading">
+
+    <hr>
+
+    <h2>What I learned</h2>
+    <p>
+      This was the first week I really had to use hand tools for the build (saw, drill, hot glue),
+      not just digital fabrication, and what surprised me was how forgiving a project like this is
+      to small mistakes. The shaft holes don't have to be perfect because the wire is bent anyway,
+      and the binder clips are spaced approximately, so if one is a millimeter off the wave still
+      looks fine. That's a different feel than the precise digital stuff in earlier weeks, and a
+      good reminder that not every part needs to be tight tolerance.
+    </p>
   </main>
 
   <footer class="foot">

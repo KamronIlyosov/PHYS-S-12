@@ -24,16 +24,14 @@
     <p class="page-eyebrow">Week 04 · Microcontroller</p>
     <h1>Microcontroller Programming</h1>
     <p class="page-sub">
-      For My Arduino project, I wired up and programmed my microcontroller in a way that if you
-      turn a potentiometer one way, it displays a smiley face using LED's and when you turn the
-      potentiometer the other way it displays a sad face. As a beginner, this project was
-      difficult but a great experience and taught me programming fundamentals.
+      My first real Arduino project. 16 LEDs arranged in two faces (one smiley, one sad), and a
+      potentiometer you turn to switch between them.
     </p>
 
     <hr>
 
     <div class="media-row">
-      <img src="./topview.jpg" alt="Top view">
+      <img src="./topview.jpg" alt="Top view of the board">
       <video controls>
         <source src="./smileydemo.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -43,11 +41,35 @@
 
     <hr>
 
+    <h2>How it works</h2>
+    <p>
+      The potentiometer is just a variable resistor with a wiper, so when I connect the 2 outer
+      pins to power and ground, the middle pin gives me a voltage that goes from 0V to 3.3V
+      depending on where the knob is. The microcontroller reads that voltage on analog pin A0 and
+      converts it into a number from 0 to 4095 (12 bit ADC). The number changes smoothly as I turn
+      the knob, so I can use it as a single input that picks between two outcomes by comparing it
+      to a threshold.
+    </p>
+    <p>
+      I set two thresholds, one at 1900 and one at 2200, so anything below 1900 shows the smiley
+      face on pin D1 and anything above 2200 shows the sad face on pin D2. The gap in between is a
+      dead zone where neither face is on, which keeps the LEDs from flickering when the pot is
+      sitting right at the boundary. The two sets of LEDs are wired in parallel groups so a single
+      digital pin can drive each face, with current limiting resistors in series so the LEDs don't
+      pull more than they can handle.
+    </p>
+
+    <hr>
+
     <h2>The code</h2>
     <p>
-      I coded the microcontroller to read the potentiometer value, and if the value was greater
-      than 2200, it would supply power to one set of LED's (Pin D1) and if the potentiometer
-      value was less than 1900, it would supply power to the other set of LED's (Pin D2).
+      I started with the obvious version that used delay() between readings, but delay() blocks the
+      whole loop, which means while the microcontroller is "waiting" it can't read the
+      potentiometer or do anything else. The instructor mentioned using millis() instead, which
+      tracks how long the program has been running and only does work when enough time has passed.
+      So I rewrote the loop to check millis() against a saved timestamp every 50ms instead of
+      blocking. The result is the same on the surface but the code can do other things in between
+      reads, which is useful for any future project that has more going on.
     </p>
 <pre>const int potPin = A0;
 const int ledSetA = D1;
@@ -88,10 +110,11 @@ void loop() {
 
     <h2>Building the circuit</h2>
     <p>
-      The next step was to actually build the circuit, for this I used 1 potentiometer, 19 wires,
-      16 LED's and 4 resistors. I connected D1 to one set of LED's and D2 to the other set of
-      LED's, making sure both were also connected to ground. After uploading my code and testing,
-      it turned out just as I expected!
+      The build took 1 potentiometer, 16 LEDs split into 2 groups, 4 resistors, and 19 wires. I
+      connected D1 to the positive leg of the smiley LEDs through a current limiting resistor, and
+      D2 to the positive leg of the sad LEDs through another resistor. Both groups share a common
+      ground. The potentiometer outer pins go to 3.3V and GND, and the middle pin goes to A0. After
+      uploading the code and turning the knob, the faces switched right when they were supposed to.
     </p>
     <img src="./angleview.jpg" alt="Circuit angle view">
 
@@ -99,19 +122,21 @@ void loop() {
 
     <h2>Schematic</h2>
     <p>
-      Here is the schematic of my circuit, depicting 4 resistors, 2 sets of LED's and a power
-      supply, I have no experience with falstad, so this didn't come out perfect.
+      Here is the schematic I drew in Falstad. It shows 4 resistors, 2 sets of LEDs, the
+      potentiometer as a voltage divider, and a power supply. I'd never used Falstad before this so
+      the layout isn't perfect, but the topology is right and it simulates correctly.
     </p>
     <img src="./schematic.jpg" alt="Circuit schematic">
 
     <hr>
 
-    <h2>Takeaway</h2>
+    <h2>What I took away</h2>
     <p>
-      In this project, I learned how to control lights and read sensors using Arduino. I used
-      digital and analog functions to make the system react to input. I also replaced delay()
-      with millis() to make the code run more smoothly. This helped me understand how
-      programming can control real-world hardware.
+      Two things stuck. One, the difference between digital and analog input, the LEDs are binary
+      on or off but the input is a continuous value, and the code is what bridges those two worlds
+      with threshold logic. Two, that delay() is fine for simple sketches but kills you the moment
+      a project needs to do more than one thing, so millis() is worth getting comfortable with
+      early. Both of those came up again in basically every project after this.
     </p>
   </main>
 
