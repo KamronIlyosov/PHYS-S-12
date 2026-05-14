@@ -1,45 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<title>PS70: Intro to Digital Fabrication </title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="../style.css" rel="stylesheet">
-
-<nav class="navbar navbar-expand-sm navbar-dark" style=" color: #EEE7E8;">
-  <div style="align-items: center; justify-content: center;" class="container-fluid">
-    <div class="flexrow">
-      <h2 class="nav-title">PS70 Fall 2024</h2>
-    </div>
-    <div class="navbar-nav">
-      <h4><a class="nav-link" href="../index.html">Home</a></h4>
-      <h4><a class="nav-link" href="../about.html">About</a></h4>
-    </div>
-  </div>
-</nav>
-
-<!-- Main Content -->
-<div class="container mt-5">
-<br>
-  </style>
+<head>
+  <meta charset="UTF-8">
+  <title>Week 9: Networking — PS70</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../style.css">
 </head>
-
 <body>
-  <!-- Content Container -->
-  <div class="container mt-4 mb-5">
-    <h3>Week 9: Radio, WiFi, Bluetooth (IoT)</h3>
-    <h4 class="mt-4">Siri Controlled LEDs with Xiao ESP32C3</h4>
-   <div style="display: flex; gap: 20px; align-items: flex-start;">
-  <video style="height: 400px; width: 400px;" controls>
-    <source src="siri.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
 
-  <img src="shortcut.gif" alt="Shortcuts Used" width="450" height="400">
-</div>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-brand">PS70<span class="dot">·</span>2025</a>
+      <nav class="nav-links">
+        <a href="../index.html#work">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../13_finalproject/index.html" class="cta">Final Project</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <a href="../index.html#work" class="page-back">← Back to work</a>
+    <p class="page-eyebrow">Week 09 · Networking</p>
+    <h1>Radio, WiFi, Bluetooth (IoT)</h1>
+    <p class="page-sub">Siri-controlled LEDs with the Xiao ESP32C3.</p>
+
+    <div class="media-row">
+      <video controls>
+        <source src="./siri.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <img src="./shortcut.gif" alt="iOS Shortcut">
+    </div>
 
     <hr>
 
-    <h5>Step 1: Gather Materials</h5>
+    <h2>Step 1: Gather Materials</h2>
     <p>The following materials were used for the project:</p>
     <ul>
       <li>Xiao ESP32C3 microcontroller</li>
@@ -50,31 +46,37 @@
       <li>Three Pin To Pin wires</li>
       <li>iPhone with the Shortcuts app installed</li>
     </ul>
-          <img src="mats.jpg" alt="Materials " width="400" height="400">
-  <hr>
-    <h5>Step 2: Wire the Circuit</h5>
+    <img src="./mats.jpg" alt="Materials">
+
+    <hr>
+
+    <h2>Step 2: Wire the Circuit</h2>
     <p>The LED circuit was connected as follows:</p>
     <ul>
       <li>One wire connected the longer legs of the LED's to digital pin D2 on the Xiao ESP32C3.</li>
-      <li>The shorter legs of the LED's were connected to the GND pin on the Xiao .</li>
+      <li>The shorter legs of the LED's were connected to the GND pin on the Xiao.</li>
     </ul>
-          <img src="circuits.jpg" alt="My Circuit " width="400" height="400">
-  <hr>
-    <h5>Step 3: Program the Xiao ESP32-C3 (Wi-Fi Version)</h5>
-<p>The Xiao ESP32-C3 was programmed using the Arduino IDE to connect to a Wi-Fi network and host a simple HTTP server. The server listens for <code>/on</code> and <code>/off</code> commands, which turn the LED on or off remotely.</p>
-<img src="LEDoff.jpg" alt="Materials " width="400" height="400">
-<img src="URL.gif" alt="Materials " width="400" height="400">
-<img src="LEDon.jpg" alt="Materials " width="400" height="400">
-<br>
-<br>
-<h3>My Code:</h3>
+    <img src="./circuits.jpg" alt="My circuit">
 
-<div style="background-color: #ffffff; color: #000000; padding: 15px; border: 1px solid #000; border-radius: 5px;">
-  <pre style="background-color: white; color: black; padding: 10px; border: 1px solid #ccc; white-space: pre-wrap; font-family: monospace;">
-#include &lt;WiFi.h&gt;
+    <hr>
+
+    <h2>Step 3: Program the Xiao ESP32-C3 (Wi-Fi Version)</h2>
+    <p>
+      The Xiao ESP32-C3 was programmed using the Arduino IDE to connect to a Wi-Fi network and
+      host a simple HTTP server. The server listens for <code>/on</code> and <code>/off</code>
+      commands, which turn the LED on or off remotely.
+    </p>
+    <div class="media-row">
+      <img src="./LEDoff.jpg" alt="LED off">
+      <img src="./URL.gif" alt="URL request">
+      <img src="./LEDon.jpg" alt="LED on">
+    </div>
+
+    <h3>My Code</h3>
+<pre>#include &lt;WiFi.h&gt;
 #include &lt;WebServer.h&gt;
 
-const char* ssid = "MAKERSPACE";        
+const char* ssid = "MAKERSPACE";
 const char* password = "12345678";
 
 WebServer server(80);
@@ -85,14 +87,14 @@ void handleOn() {
 }
 
 void handleOff() {
-  digitalWrite(2, LOW);    
+  digitalWrite(2, LOW);
   server.send(200, "text/plain", "LED is OFF");
 }
 
 void setup() {
   Serial.begin(115200);
   pinMode(2, OUTPUT);
-  digitalWrite(2, LOW);      
+  digitalWrite(2, LOW);
 
   WiFi.begin(ssid, password);
   Serial.print("Connecting to WiFi");
@@ -113,65 +115,80 @@ void setup() {
 
 void loop() {
   server.handleClient();
-}
-  </pre>
-</div>
+}</pre>
 
-  <hr>
-    <h5>Step 4: Control with Siri Shortcut</h5>
-<p>Once the Xiao ESP32C3 is connected to Wi-Fi and running the server, it can be controlled from any browser or automation system that can send HTTP requests. To control it with Siri, I used the Shortcuts app on iOS.</p>
+    <hr>
 
-<p>Instead of using IFTTT or Homebridge, I created two simple Siri Shortcuts:</p>
-<ul>
-  <li>Turn LED On: Sends a GET request to <code>http://&lt;192.168.0.194&gt;/on</code></li>
-  <li>Turn LED Off: Sends a GET request to <code>http://&lt;192.168.0.194&gt;/off</code></li>
-</ul>
+    <h2>Step 4: Control with Siri Shortcut</h2>
+    <p>
+      Once the Xiao ESP32C3 is connected to Wi-Fi and running the server, it can be controlled
+      from any browser or automation system that can send HTTP requests. To control it with Siri,
+      I used the Shortcuts app on iOS.
+    </p>
+    <p>Instead of using IFTTT or Homebridge, I created two simple Siri Shortcuts:</p>
+    <ul>
+      <li>Turn LED On: Sends a GET request to <code>http://192.168.0.194/on</code></li>
+      <li>Turn LED Off: Sends a GET request to <code>http://192.168.0.194/off</code></li>
+    </ul>
+    <p>Each shortcut uses the "Get Contents of URL" action. You can add a voice command like "Turn the lights on" to trigger it with Siri.</p>
+    <div class="media-row">
+      <img src="./shortcuts.jpg" alt="Shortcuts overview">
+      <img src="./geton.jpg" alt="GET request to turn on">
+      <img src="./getoff.jpg" alt="GET request to turn off">
+    </div>
 
-<p>Each shortcut uses the "Get Contents of URL" action. You can add a voice command like “Turn the lights on" to trigger it with Siri.</p>
+    <hr>
 
+    <h2>Step 5: Testing and Results</h2>
+    <p>To verify that the system was working correctly, I followed these steps:</p>
+    <ol>
+      <li>Connected my microcontroller to WiFi and opened the Serial Monitor to view the assigned IP address.</li>
+    </ol>
+    <div class="media-row">
+      <img src="./IP.jpg" alt="IP address in serial monitor">
+      <img src="./code1.jpg" alt="Arduino code">
+    </div>
+    <ol start="2">
+      <li>Tested the HTTP endpoints by visiting <code>http://192.168.0.194/on</code> and <code>http://192.168.0.194/off</code> in a web browser. The onboard LED responded immediately.</li>
+    </ol>
+    <div class="media-row">
+      <img src="./LEDon.jpg" alt="LED on via URL">
+      <img src="./LEDoff.jpg" alt="LED off via URL">
+    </div>
+    <ol start="3">
+      <li>Next, I ran the Siri Shortcuts using voice commands like "Turn on the lights" and "Turn off the lights". The LED responded correctly in real time.</li>
+    </ol>
+    <video controls>
+      <source src="./siri.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p>
+      The system worked reliably on the local network. I confirmed that the response from the
+      ESP32 server showed "LED is ON" or "LED is OFF" as expected. There was minimal latency
+      between issuing the Siri command and the physical LED state change.
+    </p>
 
-  <img src="shortcuts.jpg" alt="GET request to turn the lights off " width="400" height="400">
-  <img src="geton.jpg" alt="GET request to turn the lights on " width="400" height="400">
-  <img src="getoff.jpg" alt="GET request to turn the lights off " width="400" height="400">
-  
+    <hr>
 
-  <hr>
-    <h5>Step 5: Testing and Results</h5>
-<p>To verify that the system was working correctly, I followed these steps:</p>
-
-<ol>
-  <li>Connected my microcontroller to WiFi and opened the Serial Monitor to view the assigned IP address.</li>
-  <img src="IP.jpg" alt="Arduino showing the IP address " width="500" height="300">
-
-   <img src="code1.jpg" alt="Arduino Code " width="500" height="400">
-   <hr>
-  <li>Tested the HTTP endpoints by visiting <code>http://&lt;192.168.0.194&gt;/on</code> and <code>http://&lt;192.168.0.194&gt;/off</code> in a web browser. The onboard LED responded immediately.</li>
-  <br>
-  <img src="LEDon.jpg" alt="URL request to turn the lights on " width="400" height="400">
-  <img src="LEDoff.jpg" alt="URL to turn the lights off " width="400" height="400">
-
-  <hr>
-  <li>Next, I ran the Siri Shortcuts using voice commands like “Turn on the lights" and “Turn off the lights”. The LED responded correctly in real time.</li>
-</ol>
- <video style="height: 400px; width: 400px;" controls>
-    <source src="siri.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-<p>The system worked reliably on the local network. I confirmed that the response from the ESP32 server showed “LED is ON” or “LED is OFF” as expected. There was minimal latency between issuing the Siri command and the physical LED state change.</p>
-
-   
-</ul> 
-
-  <hr>
-    
-    <h5>Step 6: Reflection and Next Steps</h5>
+    <h2>Step 6: Reflection and Next Steps</h2>
     <p>This project demonstrated a simple yet powerful integration between voice control and microcontroller hardware. It shows how IoT systems can be controlled using everyday devices like smartphones.</p>
     <p>Future improvements could include:</p>
     <ul>
       <li>Integrating with Homebridge for full Apple HomeKit compatibility</li>
       <li>Controlling sensors or actuators beyond LEDs</li>
     </ul>
+  </main>
 
-  </div>
+  <footer class="foot">
+    <div class="foot-inner">
+      <span class="foot-brand">Kamron Ilyosov<span class="dot" style="color: var(--accent); margin: 0 6px;">·</span>PS70</span>
+      <div class="foot-meta">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="https://github.com/KamronIlyosov/PHYS-S-12" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>

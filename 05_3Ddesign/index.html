@@ -1,192 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<title>PS70: Intro to Digital Fabrication </title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="../style.css" rel="stylesheet">
-
-
-<nav class="navbar navbar-expand-sm navbar-dark" style=" color: #EEE7E8;">
-  <div style="align-items: center; justify-content: center;" class="container-fluid">
-    <div class="flexrow">
-      <h2 class="nav-title">PS70 Fall 2024</h2>
-    </div>
-    <div class="navbar-nav">
-      <h4><a class="nav-link" href="../index.html">Home</a></h4>
-      <h4><a class="nav-link" href="../about.html">About</a></h4>
-    </div>
-  </div>
-</nav>
-
+<head>
+  <meta charset="UTF-8">
+  <title>Week 5: 3D Design & Printing — PS70</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../style.css">
+</head>
 <body>
-<xmp style="display:none;">
-<div class="textcontainer">
-<p class="margin">   </p>
 
-<h3>Week 5: 3D Design & Printing</h3>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-brand">PS70<span class="dot">·</span>2025</a>
+      <nav class="nav-links">
+        <a href="../index.html#work">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../13_finalproject/index.html" class="cta">Final Project</a>
+      </nav>
+    </div>
+  </header>
 
-<h4> I decided to design and 3D print a prototype part of my final project, and assembled it with a DC motor, gearbox, a metal rod, and a breadboard. I also added LED lights that glow when power is produced, to help demonstrate how my final project will work.</h4>
-<br>
-<div style="display: flex; gap: 20px; align-items: center;">
-  <img style="height: 300px; width: 300px;" src="./final.jpg" alt="">
-  <video style="height: 300px; width: 300px;" controls>
-    <source src="work.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</div>
+  <main class="page">
+    <a href="../index.html#work" class="page-back">← Back to work</a>
+    <p class="page-eyebrow">Week 05 · 3D Design</p>
+    <h1>3D Design and Printing</h1>
+    <p class="page-sub">
+      I decided to design and 3D print a prototype part of my final project, and assembled it
+      with a DC motor, gearbox, a metal rod, and a breadboard. I also added LED lights that
+      glow when power is produced, to help demonstrate how my final project will work.
+    </p>
 
-<br>
-<h3><strong> Step By Step Process: </strong></h3>
-<br>
-<h4> For the first step, I designed the main component of my final project, which would be the part that straps onto your outer thigh.</h4>
-<br>
-<div>
-<img style="height: 300px; width: 300px;" src="./Prototype.jpg" alt="">
-<img style="height: 300px; width: 300px;" src="./Topproto.jpg" alt="">
-<div>
-<a download href="./proto.f3d">Download 3D File</a>
+    <hr>
 
-<br>
-<br>
-<h4> For the second step, I imported my design into PrusaSlicer, but had a slight issue: my component was too large to 3D print, so I scaled it down to 56%. Luckily this didnt affect the final product since it was just a prototype, for the next step I exported it into an SD card. This allowed me to simply put the SD card into the 3D printer and start the print.</h4>
-<br>
-<img style="height: 300px; width: 300px;" src="./full.jpg" alt="">
+    <div class="media-row">
+      <img src="./final.jpg" alt="Final prototype">
+      <video controls>
+        <source src="./work.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
 
-<img style="height: 300px; width: 300px;" src="./down.jpg" alt="">
-</div>
-<a download href="./proto.stl">Download STL</a>
-<div>
-<a download href="./prototype.gcode">Download gcode</a>
+    <hr>
 
-<br>
-<h4>Next, I mounted a DC motor and gearbox to my 3D printed part seamlessly and had to figure out how to secure a rod onto the motor shaft, which would be mounted onto your calf in the final project. To do this I drilled out a hole with the same diameter as the motor shaft, and threaded out the rod so I could screw on an M6 bolt to grip onto the motor shaft going through the hole I drilled out.</h4>
-<br>
+    <h2>Step by step</h2>
 
-<img style="height: 500px; width: 300px;" src="./thread.jpg" alt="Threading">
+    <h3>Step 1: Designing the thigh mount</h3>
+    <p>For the first step, I designed the main component of my final project, which would be the part that straps onto your outer thigh.</p>
+    <div class="media-row">
+      <img src="./Prototype.jpg" alt="Prototype CAD">
+      <img src="./Topproto.jpg" alt="Prototype top view">
+    </div>
+    <p><a download href="./proto.f3d">Download 3D File</a></p>
 
-<img style="height: 500px; width: 300px;" src="./Hole.jpg" alt="Hole mount">
-<img style="height: 500px; width: 300px;" src="./mounted.jpg" alt="">
-<br>
-<br>
-<h4>Once my prototype was assembled, I decided to laser cut a platform with a hole that matches the motors diameter in order to mount the prototype on and make it look more put together. I also used a adhesive tape to attach a breadboard beside the prototype which is where I connected the LED lights.</h4>
-<br>
-<img style="height: 300px; width: 300px;" src="./before.jpg" alt="">
-<img style="height: 300px; width: 300px;" src="./final.jpg" alt="">
-<br>
-<br>
-<h2> Assignment Part 2:<h2>
-  <br>
-<h4>After finishing my final project prototype, I scanned my favorite shoes using a photogrammetry application on Iphone called "Polycam", I chose the object scan option and scanned my object with two full rotations. This allowed me to process the scan within the app and download my 3D scan, however it required me to pay to download as STL or OBJ, so I downloaded the video version of my scan. </h4>
-<br>
-<div style="display: flex; gap: 20px; align-items: center;">
-  <img style="height: 300px; width: 300px;" src="./shoe.jpg" alt="">
-  <video style="height: 350px; width: 350px;" controls>
-    <source src="scan.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</div>
-<br>
-<br>
-<h2> Assignment Part 3:<h2>
-  <br>
-  <h2>Project Goals</h2>
-  <ul>
-    <li>Generate electricity from walking using a wearable device</li>
-    <li>Promote sustainable, human-powered energy solutions</li>
-    <li>Design a lightweight, functional, and comfortable system</li>
-    <li>Create a working prototype capable of charging a small device (e.g., phone, flashlight)</li>
-  </ul>
+    <hr>
 
-  <h2>Bill of Materials</h2>
-  <table border="1">
-    <tr>
-      <th>Item</th>
-      <th>Quantity</th>
-      <th>Cost (Estimate)</th>
-    </tr>
-    <tr>
-      <td>DC Motor (6V–12V)</td>
-      <td>1</td>
-      <td>$8</td>
-    </tr>
-    <tr>
-      <td>Voltage Regulator </td>
-      <td>1</td>
-      <td>$3</td>
-    </tr>
-    <tr>
-      <td>Rechargeable Battery (Li-ion)</td>
-      <td>1</td>
-      <td>$20</td>
-    </tr>
-    <tr>
-      <td>Pulley System (belt, gears)</td>
-      <td>1 set</td>
-      <td>$10</td>
-    </tr>
-    <tr>
-      <td>Leg Strap or Brace</td>
-      <td>1</td>
-      <td>$15</td>
-    </tr>
-    
-    <tr>
-      <td>Wires, Solder, Connectors</td>
-      <td>Set</td>
-      <td>Already Owned</td>
-    </tr>
-    <tr>
-      <td>Enclosure (optional)</td>
-      <td>1</td>
-      <td>3D printer (Free)</td>
-    </tr>
-    <tr>
-      <td>Multimeter (for testing)</td>
-      <td>1</td>
-      <td>Already owned</td>
-    </tr>
-  </table>
+    <h3>Step 2: Slicing and printing</h3>
+    <p>
+      For the second step, I imported my design into PrusaSlicer, but had a slight issue: my
+      component was too large to 3D print, so I scaled it down to 56%. Luckily this didn't affect
+      the final product since it was just a prototype, for the next step I exported it into an SD
+      card. This allowed me to simply put the SD card into the 3D printer and start the print.
+    </p>
+    <div class="media-row">
+      <img src="./full.jpg" alt="Full print">
+      <img src="./down.jpg" alt="Print detail">
+    </div>
+    <p>
+      <a download href="./proto.stl">Download STL</a> ·
+      <a download href="./prototype.gcode">Download gcode</a>
+    </p>
 
-  <p><b>Total Estimated Cost: ~$56</b></p>
-<br>
-<br>
-  <h2>4-Week Timeline</h2>
-  <table border="1">
-    <tr>
-      <th>Week</th>
-      <th>Tasks</th>
-    </tr>
-    <tr>
-      <td>Week 1</td>
-      <td>Research techniques to create the most amount of energy efficiently. Finalize design sketch. Order all parts. Test DC motor manually to understand output.</td>
-    </tr>
-    <tr>
-      <td>Week 2</td>
-      <td>Build and test the pulley and motor system. Mount to leg brace and test movement to electricity conversion.</td>
-    </tr>
-    <tr>
-      <td>Week 3</td>
-      <td>Connect voltage regulator and battery. Run walking tests to measure charging capacity. Make mechanical and electrical adjustments.</td>
-    </tr>
-    <tr>
-      <td>Week 4</td>
-      <td>Finalize design. Improve comfort and efficiency. Record results. Update website with documentation, photos, and demo video.</td>
-    </tr>
-  </table>
+    <hr>
+
+    <h3>Step 3: Motor mount and rod</h3>
+    <p>
+      Next, I mounted a DC motor and gearbox to my 3D printed part seamlessly and had to figure
+      out how to secure a rod onto the motor shaft, which would be mounted onto your calf in the
+      final project. To do this I drilled out a hole with the same diameter as the motor shaft,
+      and threaded out the rod so I could screw on an M6 bolt to grip onto the motor shaft going
+      through the hole I drilled out.
+    </p>
+    <div class="media-row">
+      <img src="./thread.jpg" alt="Threading">
+      <img src="./Hole.jpg" alt="Hole mount">
+      <img src="./mounted.jpg" alt="Mounted">
+    </div>
+
+    <hr>
+
+    <h3>Step 4: Laser-cut platform and LEDs</h3>
+    <p>
+      Once my prototype was assembled, I decided to laser cut a platform with a hole that matches
+      the motors diameter in order to mount the prototype on and make it look more put together.
+      I also used a adhesive tape to attach a breadboard beside the prototype which is where I
+      connected the LED lights.
+    </p>
+    <div class="media-row">
+      <img src="./before.jpg" alt="Before assembly">
+      <img src="./final.jpg" alt="Final assembly">
+    </div>
+
+    <hr>
+
+    <h2>Assignment Part 2: Photogrammetry</h2>
+    <p>
+      After finishing my final project prototype, I scanned my favorite shoes using a
+      photogrammetry application on Iphone called "Polycam", I chose the object scan option and
+      scanned my object with two full rotations. This allowed me to process the scan within the
+      app and download my 3D scan, however it required me to pay to download as STL or OBJ, so I
+      downloaded the video version of my scan.
+    </p>
+    <div class="media-row">
+      <img src="./shoe.jpg" alt="Shoe scan">
+      <video controls>
+        <source src="./scan.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <hr>
+
+    <h2>Assignment Part 3: Final Project Plan</h2>
+
+    <h3>Project Goals</h3>
+    <ul>
+      <li>Generate electricity from walking using a wearable device</li>
+      <li>Promote sustainable, human-powered energy solutions</li>
+      <li>Design a lightweight, functional, and comfortable system</li>
+      <li>Create a working prototype capable of charging a small device (e.g., phone, flashlight)</li>
+    </ul>
+
+    <h3>Bill of Materials</h3>
+    <table>
+      <tr><th>Item</th><th>Quantity</th><th>Cost (Estimate)</th></tr>
+      <tr><td>DC Motor (6V–12V)</td><td>1</td><td>$8</td></tr>
+      <tr><td>Voltage Regulator</td><td>1</td><td>$3</td></tr>
+      <tr><td>Rechargeable Battery (Li-ion)</td><td>1</td><td>$20</td></tr>
+      <tr><td>Pulley System (belt, gears)</td><td>1 set</td><td>$10</td></tr>
+      <tr><td>Leg Strap or Brace</td><td>1</td><td>$15</td></tr>
+      <tr><td>Wires, Solder, Connectors</td><td>Set</td><td>Already Owned</td></tr>
+      <tr><td>Enclosure (optional)</td><td>1</td><td>3D printer (Free)</td></tr>
+      <tr><td>Multimeter (for testing)</td><td>1</td><td>Already owned</td></tr>
+    </table>
+    <p><strong>Total Estimated Cost: ~$56</strong></p>
+
+    <h3>4-Week Timeline</h3>
+    <table>
+      <tr><th>Week</th><th>Tasks</th></tr>
+      <tr><td>Week 1</td><td>Research techniques to create the most amount of energy efficiently. Finalize design sketch. Order all parts. Test DC motor manually to understand output.</td></tr>
+      <tr><td>Week 2</td><td>Build and test the pulley and motor system. Mount to leg brace and test movement to electricity conversion.</td></tr>
+      <tr><td>Week 3</td><td>Connect voltage regulator and battery. Run walking tests to measure charging capacity. Make mechanical and electrical adjustments.</td></tr>
+      <tr><td>Week 4</td><td>Finalize design. Improve comfort and efficiency. Record results. Update website with documentation, photos, and demo video.</td></tr>
+    </table>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-inner">
+      <span class="foot-brand">Kamron Ilyosov<span class="dot" style="color: var(--accent); margin: 0 6px;">·</span>PS70</span>
+      <div class="foot-meta">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="https://github.com/KamronIlyosov/PHYS-S-12" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
-
-
-
-
-
-</div>
-</xmp>
-</body>
-
-<script src="../strapdown.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-
-</html>
-

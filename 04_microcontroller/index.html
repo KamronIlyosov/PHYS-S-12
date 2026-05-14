@@ -1,75 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<title>PS70: Intro to Digital Fabrication </title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="../style.css" rel="stylesheet">
-
-
-<nav class="navbar navbar-expand-sm navbar-dark" style=" color: #EEE7E8;">
-  <div style="align-items: center; justify-content: center;" class="container-fluid">
-    <div class="flexrow">
-      <h2 class="nav-title">PS70 Fall 2024</h2>
-    </div>
-    <div class="navbar-nav">
-      <h4><a class="nav-link" href="../index.html">Home</a></h4>
-      <h4><a class="nav-link" href="../about.html">About</a></h4>
-    </div>
-  </div>
-</nav>
-
-<body>
-<xmp style="display:none;">
-<div class="textcontainer">
-<p class="margin">   </p>
-
-<h3>Week 4: Microcontroller Programming</h3>
-
-<h4>For My Arduino project, I wired up and programmed my microcontroller in a way that if you turn a potentiometer one way, it displays a smiley face using LED's and when you turn the potentiometer the other way it displays a sad face. as a beginner, this project was difficult but a great experience and taught me programming fundementals.  </h4>
-<br>
-
-<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Media in One Row</title>
-  <style>
-    .media-row {
-      display: flex;
-      gap: 10px; /* space between items */
-      justify-content: center;
-      align-items: flex-start;
-      flex-wrap: nowrap; /* don't allow wrap */
-    }
-  </style>
+  <title>Week 4: Microcontroller Programming — PS70</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
-  <div class="media-row">
-    <img style="height: 500px; width: 300px;" src="./topview.jpg" alt="front view">
-    <video width="800" height="500" controls>
-      <source src="smileydemo.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <img style="height: 500px; width: 300px;" src="./LEDsideview.jpg" alt="side view">
-    <
-  </div>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-brand">PS70<span class="dot">·</span>2025</a>
+      <nav class="nav-links">
+        <a href="../index.html#work">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../13_finalproject/index.html" class="cta">Final Project</a>
+      </nav>
+    </div>
+  </header>
 
-</body>
-</html>
-    <br>
-    <br>
+  <main class="page">
+    <a href="../index.html#work" class="page-back">← Back to work</a>
+    <p class="page-eyebrow">Week 04 · Microcontroller</p>
+    <h1>Microcontroller Programming</h1>
+    <p class="page-sub">
+      For My Arduino project, I wired up and programmed my microcontroller in a way that if you
+      turn a potentiometer one way, it displays a smiley face using LED's and when you turn the
+      potentiometer the other way it displays a sad face. As a beginner, this project was
+      difficult but a great experience and taught me programming fundamentals.
+    </p>
 
-<h4> I coded the microcontroller to read the potentiometer value, and if the value was greater than 2200, it would supply power to one set of LED's (Pin D1) and if the potentiometer value was less than 1900, it would supply power to the other set of LED's (Pin D2). </h4>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Arduino Project</title>
-</head>
+    <hr>
 
-<body>
+    <div class="media-row">
+      <img src="./topview.jpg" alt="Top view">
+      <video controls>
+        <source src="./smileydemo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <img src="./LEDsideview.jpg" alt="Side view">
+    </div>
 
-<pre>
-const int potPin = A0;
+    <hr>
+
+    <h2>The code</h2>
+    <p>
+      I coded the microcontroller to read the potentiometer value, and if the value was greater
+      than 2200, it would supply power to one set of LED's (Pin D1) and if the potentiometer
+      value was less than 1900, it would supply power to the other set of LED's (Pin D2).
+    </p>
+<pre>const int potPin = A0;
 const int ledSetA = D1;
 const int ledSetB = D2;
 
@@ -102,29 +82,49 @@ void loop() {
       digitalWrite(ledSetB, LOW);
     }
   }
-}
-</pre>
+}</pre>
+
+    <hr>
+
+    <h2>Building the circuit</h2>
+    <p>
+      The next step was to actually build the circuit, for this I used 1 potentiometer, 19 wires,
+      16 LED's and 4 resistors. I connected D1 to one set of LED's and D2 to the other set of
+      LED's, making sure both were also connected to ground. After uploading my code and testing,
+      it turned out just as I expected!
+    </p>
+    <img src="./angleview.jpg" alt="Circuit angle view">
+
+    <hr>
+
+    <h2>Schematic</h2>
+    <p>
+      Here is the schematic of my circuit, depicting 4 resistors, 2 sets of LED's and a power
+      supply, I have no experience with falstad, so this didn't come out perfect.
+    </p>
+    <img src="./schematic.jpg" alt="Circuit schematic">
+
+    <hr>
+
+    <h2>Takeaway</h2>
+    <p>
+      In this project, I learned how to control lights and read sensors using Arduino. I used
+      digital and analog functions to make the system react to input. I also replaced delay()
+      with millis() to make the code run more smoothly. This helped me understand how
+      programming can control real-world hardware.
+    </p>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-inner">
+      <span class="foot-brand">Kamron Ilyosov<span class="dot" style="color: var(--accent); margin: 0 6px;">·</span>PS70</span>
+      <div class="foot-meta">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="https://github.com/KamronIlyosov/PHYS-S-12" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
 
 </body>
-</html>
-
-<h4> the next step was to actually build the circuit, for this I used 1 potentiometer, 19 wires, 16 LED's and 4 resistors. I connected D1 to one set of LED's and D2 to the other set of LED's, making sure both were also connected to ground. After uploading my code and testing, it turned out just as I expected!  </h4>
-<br>
-<img style="height: 500px; width: 300px;" src="./angleview.jpg" alt="circuit view">
-<br>
-<br>
-<h4>Here is the schematic of my circuit, depicting 4 resistors, 2 sets of LED's and a power supply, I have no experience with falstad, so this didnt come out perfect.</h4>
-<br>
-
-<img style="height: 500px; width: 500px;" src="./schematic.jpg" alt=" circuit schematic">
-
-<br>
-<h4> In this project, I learned how to control lights and read sensors using Arduino. I used digital and analog functions to make the system react to input. I also replaced delay() with millis() to make the code run more smoothly. This helped me understand how programming can control real-world hardware.</h4>
-</div>
-</xmp>
-</body>
-
-<script src="../strapdown.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-
 </html>

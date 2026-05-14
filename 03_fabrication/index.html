@@ -1,90 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<title>PS70: Intro to Digital Fabrication </title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="../style.css" rel="stylesheet">
-
-
-<nav class="navbar navbar-expand-sm navbar-dark" style="color: #EEE7E8;">
-  <div style="align-items: center; justify-content: center;" class="container-fluid">
-    <div class="flexrow">
-      <h2 class="nav-title">PS70 Fall 2024</h2>
-    </div>
-    <div class="navbar-nav">
-      <h4><a class="nav-link" href="../index.html">Home</a></h4>
-      <h4><a class="nav-link" href="../about.html">About</a></h4>
-    </div>
-  </div>
-</nav>
-
-<body>
-<xmp style="display:none;">
-<div class="textcontainer">
-<p class="margin">   </p>
-
-<h3>Week 3: Hand Tools and Fabrication</h3>
-<br>
-<h4>My kinetic figure is a sculpture with colorful binder clips moving up and down:</h4>
-<br>
-
-<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Media in One Row</title>
-  <style>
-    .media-row {
-      display: flex;
-      gap: 10px; /* space between items */
-      justify-content: center;
-      align-items: flex-start;
-      flex-wrap: nowrap; /* don't allow wrap */
-    }
-  </style>
+  <title>Week 3: Hand Tools and Fabrication — PS70</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
-  <div class="media-row">
-    <img style="height: 500px; width: 300px;" src="./front.jpg" alt="front view">
-    <img style="height: 500px; width: 300px;" src="./side.jpg" alt="side view">
-    <video width="800" height="500" controls>
-      <source src="demo.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-brand">PS70<span class="dot">·</span>2025</a>
+      <nav class="nav-links">
+        <a href="../index.html#work">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../13_finalproject/index.html" class="cta">Final Project</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <a href="../index.html#work" class="page-back">← Back to work</a>
+    <p class="page-eyebrow">Week 03 · Fabrication</p>
+    <h1>Hand Tools and Fabrication</h1>
+    <p class="page-sub">My kinetic figure is a sculpture with colorful binder clips moving up and down.</p>
+
+    <hr>
+
+    <div class="media-row">
+      <img src="./front.jpg" alt="Front view">
+      <img src="./side.jpg" alt="Side view">
+      <video controls>
+        <source src="./demo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <hr>
+
+    <h2>Step 1: CAD for the bird figure</h2>
+    <p>(couldn't use this due to classmates dishonesty regarding the line for the laser cutter)</p>
+    <img src="./BirdCAD.png" alt="Bird CAD">
+
+    <hr>
+
+    <h2>Step 2: Building the platform</h2>
+    <p>
+      Then I had to build the platform, I cut thin wood for the base, and added 2 wood pieces
+      which would be supporting the shaft mechanism.
+    </p>
+    <img src="./plywood.jpg" alt="Plywood base">
+
+    <hr>
+
+    <h2>Step 3: Wavy cam and circuit</h2>
+    <p>
+      To actually make the colorful clips move, I bent metal wire into an uneven, wavy shape so
+      that when it turns, it pushes the binder clips up and down in a repeating pattern. Next, I
+      had to include circuitry; I connected the ground, power, and analog to the potentiometer,
+      and connected a motor so I can adjust the motor speed.
+    </p>
+    <img src="./circuit.jpg" alt="Circuit">
+
+    <hr>
+
+    <h2>Step 4: Measurements</h2>
+    <p>After measuring the voltage of my circuit, I got 5V and used ohms law to find a current of 300 mA.</p>
+    <img src="./volt.jpeg" alt="Multimeter reading">
+  </main>
+
+  <footer class="foot">
+    <div class="foot-inner">
+      <span class="foot-brand">Kamron Ilyosov<span class="dot" style="color: var(--accent); margin: 0 6px;">·</span>PS70</span>
+      <div class="foot-meta">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="https://github.com/KamronIlyosov/PHYS-S-12" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
 
 </body>
-</html>
-
-<br>
-<h4>For the first step, I made a CAD for the bird figure:
-<br> (couldnt use this due to classmates dishonesty regarding the line for the laser cutter)</h4>
-
-
-
-<image style="height: 400px; width: 500px;" src="./BirdCAD.png" alt="bird CAD"> </image>
-
-<br>
-<br>
-<h4>Then I had to build the platform, I cut thin wood for the base, and added 2 wood peices which would be supporting the shaft mechanism.</h4>
-<br>
-<image style="height: 400px; width: 500px;" src="./plywood.jpg" alt="plywood"> </image>
-
-<br>
-<br>
-<h4>To actually make the colorful clips move, I bent metal wire into an uneven, wavy shape so that when it turns, it pushes the binder clips up and down in a repeating pattern. Next, I had to include circuitry; I connected the ground, power, and analog to the potentiometer, and connected a motor so I can adjust the motor speed.  </h4>
-<br>
-<img style="height: 400px; width: 300px;" src="./circuit.jpg" alt="circuit">
-<br>
-<h4> After measuring the voltage of my circuit, I got 5V and used ohms law to find a current of 300 mA. </h4>
-<img style="height: 300px; width: 400px;" src="./volt.jpeg" alt="multimeter">
-
-
-</div>
-</xmp>
-</body>
-
-<script src="../strapdown.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-
 </html>
