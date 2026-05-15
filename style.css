@@ -351,9 +351,9 @@ hr {
 }
 
 .card-media {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
-  background: var(--surface-2);
+  background: #ffffff;
 }
 
 .card-media img {
@@ -368,10 +368,10 @@ hr {
 }
 
 .card-body {
-  padding: 22px 22px 24px;
+  padding: 14px 22px 14px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
   flex: 1;
 }
 
@@ -397,6 +397,10 @@ hr {
   font-size: 0.95rem;
   line-height: 1.55;
   margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .card-arrow {
@@ -660,19 +664,12 @@ hr {
 .media-row video {
   width: 100%;
   max-width: 100%;
-  height: 100%;
-  max-height: 320px;
-  object-fit: cover;
+  height: auto;
   margin: 0;
 }
 
 .media-row figure {
   margin: 0;
-}
-
-.media-row figure img,
-.media-row figure video {
-  max-height: 280px;
 }
 
 .page pre {
